@@ -283,12 +283,12 @@ function Index() {
                 <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {p.body}
                 </p>
-                <a
-                  href="#contact"
+                <Link
+                  to="/services"
                   className="mt-6 text-sm font-semibold text-primary hover:underline"
                 >
                   {p.cta}
-                </a>
+                </Link>
               </article>
             ))}
           </div>
