@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "NILG.AI — Scale your company with Artificial Intelligence" },
+      { title: "Seeds4Clix — Scale your company with Artificial Intelligence" },
       {
         name: "description",
         content:
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "NILG.AI — Scale your company with Artificial Intelligence",
+        content: "Seeds4Clix — Scale your company with Artificial Intelligence",
       },
       {
         property: "og:description",
@@ -146,7 +146,7 @@ function Index() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
         <div className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-5">
           <a href="/" className="text-xl font-bold tracking-tight">
-            nilg<span className="text-primary">.</span>ai
+            Seeds4CLix
           </a>
           <nav className="hidden items-center gap-8 text-sm text-foreground/80 lg:flex">
             <a className="transition-colors hover:text-primary" href="#what-we-do">
@@ -357,9 +357,9 @@ function Index() {
       <footer className="border-t border-border/60 py-10">
         <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-4 px-5 text-sm text-muted-foreground sm:flex-row">
           <span className="font-bold text-foreground">
-            nilg<span className="text-primary">.</span>ai
+            Seeds4Clix
           </span>
-          <span>© {new Date().getFullYear()} NILG.AI — All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Seeds4Clix — All rights reserved.</span>
         </div>
       </footer>
     </div>
