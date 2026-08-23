@@ -320,15 +320,6 @@ function Index() {
           </div>
         </div>
       </section>
-
-      <footer className="border-t border-border/60 py-10">
-        <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-4 px-5 text-sm text-muted-foreground sm:flex-row">
-          <span className="font-bold text-foreground">
-            Seeds4Clix
-          </span>
-          <span>© {new Date().getFullYear()} Seeds4Clix — All rights reserved.</span>
-        </div>
-      </footer>
     </div>
   );
 }
