@@ -142,40 +142,7 @@ function EmailCapture({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-5">
-          <a href="/" className="text-xl font-bold tracking-tight">
-            Seeds4CLix
-          </a>
-          <nav className="hidden items-center gap-8 text-sm text-foreground/80 lg:flex">
-            <a className="transition-colors hover:text-primary" href="#what-we-do">
-              Services
-            </a>
-            <a className="transition-colors hover:text-primary" href="#paths">
-              Tools
-            </a>
-            <a className="transition-colors hover:text-primary" href="#path">
-              Blog
-            </a>
-            <a className="transition-colors hover:text-primary" href="#contact">
-              About
-            </a>
-          </nav>
-          <div className="flex items-center gap-3">
-            <span className="hidden rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-muted-foreground sm:inline">
-              EN
-            </span>
-            <a
-              href="#contact"
-              className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform cta-glow hover:-translate-y-0.5"
-            >
-              I want to automate my company
-            </a>
-          </div>
-        </div>
-      </header>
-
+    <div>
       <section className="hero-backdrop border-b border-border/60">
         <div className="mx-auto max-w-[1200px] px-5 py-24 sm:py-32">
           <h1 className="max-w-3xl text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
