@@ -133,9 +133,11 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen bg-background text-foreground">
         <SiteHeader />
+        <ScrollReveal />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <SiteFooter />
+
       </div>
     </QueryClientProvider>
   );
