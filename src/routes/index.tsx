@@ -180,15 +180,16 @@ function Index() {
         <p className="eyebrow text-center">
           Companies already deciding with AI alongside us
         </p>
-        <div className="mt-8 overflow-hidden">
+        <div className="marquee-wrap mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
           <div className="marquee-track flex w-max items-center gap-16">
             {[...LOGOS, ...LOGOS].map((name, i) => (
               <span
                 key={`${name}-${i}`}
-                className="whitespace-nowrap text-lg font-semibold text-muted-foreground/50"
+                className="whitespace-nowrap text-lg font-semibold text-muted-foreground/50 transition-colors duration-300 hover:text-primary"
               >
                 {name}
               </span>
+
             ))}
           </div>
         </div>

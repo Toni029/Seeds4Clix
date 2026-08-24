@@ -13,6 +13,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
+import { ScrollReveal } from "../components/scroll-reveal";
+
 
 function NotFoundComponent() {
   return (
@@ -131,9 +133,11 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen bg-background text-foreground">
         <SiteHeader />
+        <ScrollReveal />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <SiteFooter />
+
       </div>
     </QueryClientProvider>
   );
