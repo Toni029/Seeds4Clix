@@ -12,41 +12,62 @@ export function ScrollReveal() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const targets: HTMLElement[] = [];
-    document.querySelectorAll<HTMLElement>("main section, section").forEach((section) => {
-      const container = (section.firstElementChild as HTMLElement) ?? section;
-      const kids = Array.from(container.children) as HTMLElement[];
-      const list = kids.length ? kids : [container];
-      list.forEach((el, i) => {
-        if (el.hasAttribute("data-reveal")) return;
-        el.setAttribute("data-reveal", "");
-        el.style.setProperty("--reveal-delay", `${Math.min(i, 6) * 90}ms`);
-        targets.push(el);
-      });
-    });
+    let observer: IntersectionObserver | null = null;
+    let fallback: number | undefined;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
+    // Wait for hydration to settle before mutating the DOM directly.
+    const start = window.setTimeout(() => {
+      const targets: HTMLElement[] = [];
+      document.querySelectorAll<HTMLElement>("section").forEach((section) => {
+        const container = (section.firstElementChild as HTMLElement) ?? section;
+        const kids = Array.from(container.children) as HTMLElement[];
+        const list = kids.length ? kids : [container];
+        list.forEach((el, i) => {
+          if (el.hasAttribute("data-reveal")) return;
+          el.setAttribute("data-reveal", "");
+          el.style.setProperty("--reveal-delay", `${Math.min(i, 6) * 90}ms`);
+          targets.push(el);
+        });
+      });
+
+      const show = (el: Element) => el.classList.add("is-visible");
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              show(entry.target);
+              observer?.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "0px 0px -40px 0px", threshold: 0 },
+      );
+
+      targets.forEach((el) => {
+        if (el.getBoundingClientRect().top < window.innerHeight) show(el);
+        else observer?.observe(el);
+      });
+
+      // Safety net: never leave content invisible.
+      fallback = window.setInterval(() => {
+        targets.forEach((el) => {
+          if (
+            !el.classList.contains("is-visible") &&
+            el.getBoundingClientRect().top < window.innerHeight
+          ) {
+            show(el);
+            observer?.unobserve(el);
           }
         });
-      },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
-    );
+      }, 500);
+    }, 250);
 
-    targets.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight) {
-        el.classList.add("is-visible");
-      } else {
-        observer.observe(el);
-      }
-    });
-
-    return () => observer.disconnect();
+    return () => {
+      window.clearTimeout(start);
+      if (fallback) window.clearInterval(fallback);
+      observer?.disconnect();
+    };
   }, [pathname]);
 
   return null;
