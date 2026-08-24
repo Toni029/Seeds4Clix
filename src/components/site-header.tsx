@@ -11,7 +11,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-5">
         <Link to="/" className="text-xl font-bold tracking-tight">
-          Seeds4CLix
+          Seeds<span className="text-gradient-headline">4</span>CLix
         </Link>
         <nav className="hidden items-center gap-8 text-sm text-foreground/80 lg:flex">
           {NAV.map((item) => (

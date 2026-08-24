@@ -65,46 +65,46 @@
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.19 0.014 265);
+  --background: oklch(0.13 0.014 265);
   --foreground: oklch(0.98 0.002 250);
-  --card: oklch(0.23 0.015 265);
+  --card: oklch(0.18 0.016 265);
   --card-foreground: oklch(0.98 0.002 250);
-  --popover: oklch(0.23 0.015 265);
+  --popover: oklch(0.18 0.016 265);
   --popover-foreground: oklch(0.98 0.002 250);
-  --primary: oklch(0.71 0.196 47);
-  --primary-foreground: oklch(0.17 0.012 265);
-  --secondary: oklch(0.27 0.017 265);
+  --primary: oklch(0.72 0.19 160);
+  --primary-foreground: oklch(0.16 0.02 160);
+  --secondary: oklch(0.22 0.02 265);
   --secondary-foreground: oklch(0.98 0.002 250);
-  --muted: oklch(0.27 0.017 265);
-  --muted-foreground: oklch(0.74 0.014 260);
-  --accent: oklch(0.66 0.13 300);
+  --muted: oklch(0.22 0.02 265);
+  --muted-foreground: oklch(0.75 0.015 260);
+  --accent: oklch(0.66 0.18 255);
   --accent-foreground: oklch(0.98 0.002 250);
   --destructive: oklch(0.62 0.22 27);
   --destructive-foreground: oklch(0.98 0.002 250);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.71 0.196 47);
-  --chart-1: oklch(0.71 0.196 47);
-  --chart-2: oklch(0.66 0.13 300);
+  --ring: oklch(0.72 0.19 160);
+  --chart-1: oklch(0.72 0.19 160);
+  --chart-2: oklch(0.66 0.18 255);
   --chart-3: oklch(0.6 0.118 184);
   --chart-4: oklch(0.83 0.189 84);
   --chart-5: oklch(0.77 0.188 70);
-  --sidebar: oklch(0.23 0.015 265);
+  --sidebar: oklch(0.18 0.016 265);
   --sidebar-foreground: oklch(0.98 0.002 250);
-  --sidebar-primary: oklch(0.71 0.196 47);
-  --sidebar-primary-foreground: oklch(0.17 0.012 265);
-  --sidebar-accent: oklch(0.27 0.017 265);
+  --sidebar-primary: oklch(0.72 0.19 160);
+  --sidebar-primary-foreground: oklch(0.16 0.02 160);
+  --sidebar-accent: oklch(0.22 0.02 265);
   --sidebar-accent-foreground: oklch(0.98 0.002 250);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.71 0.196 47);
+  --sidebar-ring: oklch(0.72 0.19 160);
 
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Space Mono", ui-monospace, monospace;
   --gradient-headline: linear-gradient(
     100deg,
-    oklch(0.71 0.196 47) 0%,
-    oklch(0.71 0.196 47) 38%,
-    oklch(0.68 0.12 320) 100%
+    oklch(0.72 0.19 160) 0%,
+    oklch(0.7 0.17 185) 50%,
+    oklch(0.66 0.18 255) 100%
   );
   --glow-warm: radial-gradient(
     60% 60% at 0% 0%,
@@ -113,7 +113,7 @@
   );
   --glow-cool: radial-gradient(
     55% 55% at 100% 55%,
-    color-mix(in oklab, oklch(0.5 0.19 275) 30%, transparent) 0%,
+    color-mix(in oklab, oklch(0.5 0.19 255) 30%, transparent) 0%,
     transparent 70%
   );
   --shadow-cta: 0 12px 34px -12px color-mix(in oklab, var(--primary) 60%, transparent);
