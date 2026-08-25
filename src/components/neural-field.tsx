@@ -5,6 +5,7 @@ interface Node {
   y: number;
   vx: number;
   vy: number;
+  drift: number;
   radius: number;
   opacity: number;
   phase: number;
@@ -33,7 +34,8 @@ export function NeuralField() {
       x: Math.random(),
       y: Math.random(),
       vx: (Math.random() - 0.5) * 0.00006,
-      vy: 0.00003 + Math.random() * 0.00005,
+      vy: (Math.random() - 0.5) * 0.00006,
+      drift: Math.random() * Math.PI * 2,
       radius: 0.7 + Math.random() * 1.5,
       opacity: 0.2 + Math.random() * 0.4,
       phase: Math.random() * Math.PI * 2,
@@ -45,6 +47,8 @@ export function NeuralField() {
     let frame = 0;
     let lastTime = 0;
     let running = true;
+    let scrollTarget = window.scrollY;
+    let scrollPosition = scrollTarget;
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -60,6 +64,8 @@ export function NeuralField() {
       const elapsed = Math.min(now - lastTime || 16, 50);
       lastTime = now;
       const seconds = now * 0.001;
+      const scrollEase = 1 - Math.pow(0.0001, elapsed / 1000);
+      scrollPosition += (scrollTarget - scrollPosition) * scrollEase;
       context.clearRect(0, 0, width, height);
 
       // Smoothly ease the tracked pointer toward its real position so the
@@ -71,18 +77,18 @@ export function NeuralField() {
 
       const points = nodes.map((node) => {
         if (!reducedMotion.matches) {
-          node.x += node.vx * elapsed;
-          node.y += node.vy * elapsed;
+          const wander = seconds * 0.18 + node.drift;
+          node.x += (node.vx + Math.cos(wander) * 0.000035) * elapsed;
+          node.y += (node.vy + Math.sin(wander * 1.17) * 0.000035) * elapsed;
           if (node.x < -0.04) node.x = 1.04;
           if (node.x > 1.04) node.x = -0.04;
-          if (node.y > 1.04) {
-            node.y = -0.04;
-            node.x = Math.random();
-          }
+          if (node.y < -0.04) node.y = 1.04;
+          if (node.y > 1.04) node.y = -0.04;
         }
         const breathing = Math.sin(seconds * 0.35 + node.phase) * 4;
         const x = node.x * width + Math.cos(node.phase) * breathing;
-        const y = node.y * height + Math.sin(node.phase) * breathing;
+        const scrollOffset = (scrollPosition * 0.18) % (height + 180);
+        const y = ((node.y * height + Math.sin(node.phase) * breathing - scrollOffset + height + 180) % (height + 180)) - 90;
         return { x, y, node };
       });
 
@@ -120,6 +126,9 @@ export function NeuralField() {
       if (!reducedMotion.matches) frame = requestAnimationFrame(draw);
     };
 
+    const onScroll = () => {
+      scrollTarget = window.scrollY;
+    };
     const onPointerMove = (event: PointerEvent) => {
       pointerTarget.x = event.clientX;
       pointerTarget.y = event.clientY;
@@ -140,6 +149,7 @@ export function NeuralField() {
     resize();
     draw(performance.now());
     window.addEventListener("resize", resize);
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("pointerleave", onPointerLeave, { passive: true });
     document.addEventListener("visibilitychange", onVisibilityChange);
@@ -148,6 +158,7 @@ export function NeuralField() {
       running = false;
       cancelAnimationFrame(frame);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerleave", onPointerLeave);
       document.removeEventListener("visibilitychange", onVisibilityChange);
