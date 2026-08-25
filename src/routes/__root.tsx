@@ -15,7 +15,6 @@ import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
 import { ScrollReveal } from "../components/scroll-reveal";
 import { NeuralField } from "../components/neural-field";
-import { SparkleField } from "../components/sparkle-field";
 
 
 function NotFoundComponent() {
@@ -134,7 +133,6 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <NeuralField />
-      <SparkleField />
       <div className="relative min-h-screen text-foreground">
         <SiteHeader />
         <ScrollReveal />
