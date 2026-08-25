@@ -132,10 +132,13 @@
   }
 }
 
-@layer base {
+  @layer base {
+  html {
+  scroll-behavior: smooth;
+  }
   body {
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
   }
   h1,
   h2,
@@ -146,15 +149,7 @@
 }
 
 @utility hero-backdrop {
-  background-color: var(--background);
-  background-image: var(--glow-warm), var(--glow-cool),
-    linear-gradient(to right, oklch(1 0 0 / 3%) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(1 0 0 / 3%) 1px, transparent 1px);
-  background-size:
-    100% 100%,
-    100% 100%,
-    72px 72px,
-    72px 72px;
+  background-color: color-mix(in oklab, var(--background) 62%, transparent);
 }
 
 @utility text-gradient-headline {
@@ -422,6 +417,22 @@ input:focus {
 
 .marquee-wrap:hover .marquee-track {
   animation-play-state: paused;
+}
+
+.neural-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.55;
+  pointer-events: none;
+  filter: blur(0.15px);
+}
+
+.relative.min-h-screen {
+  position: relative;
+  z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {

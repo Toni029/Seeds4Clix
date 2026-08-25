@@ -29,6 +29,7 @@ const OFFERS = [
   {
     title: "AI Academy",
     body: "Training for your team with an AI tutor and content personalized to your context. The people using the tools every day need to understand them, not just receive them.",
+    to: "/ai-academy" as const,
     points: [
       "Personalized learning paths per role",
       "Hands-on work on your own processes",
@@ -38,6 +39,7 @@ const OFFERS = [
   {
     title: "The AI Operating System for SMEs",
     body: "The platform where the work actually happens: marketing, sales, operations and HR automations, with your team and ours working in the same place.",
+    to: "/ai-operating-system" as const,
     points: [
       "Assisted autopilot across four functions",
       "Human decisions kept where judgment matters",
@@ -47,6 +49,7 @@ const OFFERS = [
   {
     title: "AI Strategic Roadmap",
     body: "A deep diagnosis of your business, team interviews, and an automation roadmap prioritized by impact and risk — from diagnosis to implementation.",
+    to: "/ai-roadmap" as const,
     points: [
       "Interviews across the whole operation",
       "Queue ordered by real return, not novelty",
@@ -83,8 +86,8 @@ const DELIVERABLES = [
 function ServicesPage() {
   return (
     <div>
-      <section className="hero-backdrop border-b border-border/60">
-        <div className="mx-auto max-w-[1200px] px-5 py-24 sm:py-28">
+      <section className="hero-backdrop relative isolate overflow-hidden border-b border-border/60">
+        <div className="relative mx-auto max-w-[1200px] px-5 py-24 sm:py-28">
           <p className="eyebrow">Services</p>
           <h1 className="mt-4 max-w-3xl text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
             <span className="text-gradient-headline">Structure, automate</span>
@@ -92,8 +95,8 @@ function ServicesPage() {
             and then scale.
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            Software is the means. What we deliver is measured in time recovered,
-            decisions delegated and margin protected — in that order.
+            Software is the means. What we deliver is measured in time recovered, decisions
+            delegated and margin protected — in that order.
           </p>
           <Link
             to="/ai-development"
@@ -113,9 +116,7 @@ function ServicesPage() {
             {OFFERS.map((offer) => (
               <article key={offer.title} className="surface-card flex flex-col p-8">
                 <h3 className="text-2xl">{offer.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  {offer.body}
-                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{offer.body}</p>
                 <ul className="mt-6 flex-1 space-y-2.5 text-sm text-foreground/80">
                   {offer.points.map((point) => (
                     <li key={point} className="flex gap-3">
@@ -131,7 +132,7 @@ function ServicesPage() {
                     to={offer.to}
                     className="mt-6 text-sm font-semibold text-primary hover:underline"
                   >
-                    See how custom work runs →
+                    Explore this service →
                   </Link>
                 ) : null}
               </article>
@@ -148,9 +149,7 @@ function ServicesPage() {
             {DELIVERABLES.map((item) => (
               <article key={item.title} className="surface-card p-8">
                 <h3 className="text-2xl">{item.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  {item.body}
-                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
               </article>
             ))}
           </div>
@@ -161,8 +160,7 @@ function ServicesPage() {
         <div className="mx-auto max-w-3xl px-5 text-center">
           <h2 className="text-4xl sm:text-5xl">Not sure which one you need?</h2>
           <p className="mt-6 text-lg text-muted-foreground">
-            Most companies start with the diagnosis. It usually decides the rest for
-            them.
+            Most companies start with the diagnosis. It usually decides the rest for them.
           </p>
           <Link
             to="/ai-development"
