@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { NeuralField } from "../components/neural-field";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -80,16 +81,19 @@ const PATHS = [
     title: "AI Academy",
     body: "Training for your team with an AI tutor and content personalized to your context. The people using the tools every day need to understand them, not just receive them.",
     cta: "See the courses ↗",
+    to: "/ai-academy" as const,
   },
   {
     title: "The AI Operating System for SMEs",
     body: "The platform where the work happens: marketing, sales, operations and HR automations, with your team and ours working in the same place.",
     cta: "See the platform →",
+    to: "/ai-operating-system" as const,
   },
   {
     title: "AI Strategic Roadmap",
     body: "A deep diagnosis of your business, team interviews, and an automation roadmap prioritized by impact and risk. From diagnosis to implementation, with the whole company aligned.",
     cta: "See the roadmap →",
+    to: "/ai-roadmap" as const,
   },
 ];
 
@@ -143,8 +147,9 @@ function EmailCapture({
 function Index() {
   return (
     <div>
-      <section className="hero-backdrop border-b border-border/60">
-        <div className="mx-auto max-w-[1200px] px-5 py-24 sm:py-32">
+      <section className="hero-backdrop relative isolate overflow-hidden border-b border-border/60">
+        <NeuralField />
+        <div className="relative mx-auto max-w-[1200px] px-5 py-24 sm:py-32">
           <h1 className="max-w-3xl text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
             <span className="text-gradient-headline">Scale your company</span>
             <br />
@@ -284,8 +289,8 @@ function Index() {
                 <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {p.body}
                 </p>
-                <Link
-                  to="/services"
+                  <Link
+                  to={p.to}
                   className="mt-6 text-sm font-semibold text-primary hover:underline"
                 >
                   {p.cta}

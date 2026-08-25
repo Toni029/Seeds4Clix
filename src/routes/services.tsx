@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { NeuralField } from "../components/neural-field";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -29,6 +30,7 @@ const OFFERS = [
   {
     title: "AI Academy",
     body: "Training for your team with an AI tutor and content personalized to your context. The people using the tools every day need to understand them, not just receive them.",
+    to: "/ai-academy" as const,
     points: [
       "Personalized learning paths per role",
       "Hands-on work on your own processes",
@@ -38,6 +40,7 @@ const OFFERS = [
   {
     title: "The AI Operating System for SMEs",
     body: "The platform where the work actually happens: marketing, sales, operations and HR automations, with your team and ours working in the same place.",
+    to: "/ai-operating-system" as const,
     points: [
       "Assisted autopilot across four functions",
       "Human decisions kept where judgment matters",
@@ -47,6 +50,7 @@ const OFFERS = [
   {
     title: "AI Strategic Roadmap",
     body: "A deep diagnosis of your business, team interviews, and an automation roadmap prioritized by impact and risk — from diagnosis to implementation.",
+    to: "/ai-roadmap" as const,
     points: [
       "Interviews across the whole operation",
       "Queue ordered by real return, not novelty",
@@ -83,8 +87,9 @@ const DELIVERABLES = [
 function ServicesPage() {
   return (
     <div>
-      <section className="hero-backdrop border-b border-border/60">
-        <div className="mx-auto max-w-[1200px] px-5 py-24 sm:py-28">
+      <section className="hero-backdrop relative isolate overflow-hidden border-b border-border/60">
+        <NeuralField />
+        <div className="relative mx-auto max-w-[1200px] px-5 py-24 sm:py-28">
           <p className="eyebrow">Services</p>
           <h1 className="mt-4 max-w-3xl text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
             <span className="text-gradient-headline">Structure, automate</span>
@@ -127,11 +132,8 @@ function ServicesPage() {
                   ))}
                 </ul>
                 {offer.to ? (
-                  <Link
-                    to={offer.to}
-                    className="mt-6 text-sm font-semibold text-primary hover:underline"
-                  >
-                    See how custom work runs →
+                  <Link to={offer.to} className="mt-6 text-sm font-semibold text-primary hover:underline">
+                    Explore this service →
                   </Link>
                 ) : null}
               </article>

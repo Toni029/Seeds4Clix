@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AiAcademyRouteImport } from './routes/ai-academy'
 import { Route as AiDevelopmentRouteImport } from './routes/ai-development'
+import { Route as AiOperatingSystemRouteImport } from './routes/ai-operating-system'
+import { Route as AiRoadmapRouteImport } from './routes/ai-roadmap'
 import { Route as ServicesRouteImport } from './routes/services'
 
 const IndexRoute = IndexRouteImport.update({
@@ -24,9 +27,24 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiAcademyRoute = AiAcademyRouteImport.update({
+  id: '/ai-academy',
+  path: '/ai-academy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AiDevelopmentRoute = AiDevelopmentRouteImport.update({
   id: '/ai-development',
   path: '/ai-development',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiOperatingSystemRoute = AiOperatingSystemRouteImport.update({
+  id: '/ai-operating-system',
+  path: '/ai-operating-system',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiRoadmapRoute = AiRoadmapRouteImport.update({
+  id: '/ai-roadmap',
+  path: '/ai-roadmap',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -38,34 +56,68 @@ const ServicesRoute = ServicesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ai-academy': typeof AiAcademyRoute
   '/ai-development': typeof AiDevelopmentRoute
+  '/ai-operating-system': typeof AiOperatingSystemRoute
+  '/ai-roadmap': typeof AiRoadmapRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ai-academy': typeof AiAcademyRoute
   '/ai-development': typeof AiDevelopmentRoute
+  '/ai-operating-system': typeof AiOperatingSystemRoute
+  '/ai-roadmap': typeof AiRoadmapRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ai-academy': typeof AiAcademyRoute
   '/ai-development': typeof AiDevelopmentRoute
+  '/ai-operating-system': typeof AiOperatingSystemRoute
+  '/ai-roadmap': typeof AiRoadmapRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/ai-development' | '/services'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/ai-academy'
+    | '/ai-development'
+    | '/ai-operating-system'
+    | '/ai-roadmap'
+    | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/ai-development' | '/services'
-  id: '__root__' | '/' | '/about' | '/ai-development' | '/services'
+  to:
+    | '/'
+    | '/about'
+    | '/ai-academy'
+    | '/ai-development'
+    | '/ai-operating-system'
+    | '/ai-roadmap'
+    | '/services'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/ai-academy'
+    | '/ai-development'
+    | '/ai-operating-system'
+    | '/ai-roadmap'
+    | '/services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AiAcademyRoute: typeof AiAcademyRoute
   AiDevelopmentRoute: typeof AiDevelopmentRoute
+  AiOperatingSystemRoute: typeof AiOperatingSystemRoute
+  AiRoadmapRoute: typeof AiRoadmapRoute
   ServicesRoute: typeof ServicesRoute
 }
 
@@ -85,11 +137,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-academy': {
+      id: '/ai-academy'
+      path: '/ai-academy'
+      fullPath: '/ai-academy'
+      preLoaderRoute: typeof AiAcademyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ai-development': {
       id: '/ai-development'
       path: '/ai-development'
       fullPath: '/ai-development'
       preLoaderRoute: typeof AiDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-operating-system': {
+      id: '/ai-operating-system'
+      path: '/ai-operating-system'
+      fullPath: '/ai-operating-system'
+      preLoaderRoute: typeof AiOperatingSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-roadmap': {
+      id: '/ai-roadmap'
+      path: '/ai-roadmap'
+      fullPath: '/ai-roadmap'
+      preLoaderRoute: typeof AiRoadmapRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -105,7 +178,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AiAcademyRoute: AiAcademyRoute,
   AiDevelopmentRoute: AiDevelopmentRoute,
+  AiOperatingSystemRoute: AiOperatingSystemRoute,
+  AiRoadmapRoute: AiRoadmapRoute,
   ServicesRoute: ServicesRoute,
 }
 export const routeTree = rootRouteImport
