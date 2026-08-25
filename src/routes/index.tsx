@@ -115,13 +115,7 @@ function TypedQuestion() {
   );
 }
 
-function EmailCapture({
-  placeholder,
-  label,
-}: {
-  placeholder: string;
-  label: string;
-}) {
+function EmailCapture({ placeholder, label }: { placeholder: string; label: string }) {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -156,21 +150,18 @@ function Index() {
             with Artificial Intelligence.
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            We find where your business stalls, automate the repetitive work, and give
-            you back time, margin and decisions that stop depending on you.
+            We find where your business stalls, automate the repetitive work, and give you back
+            time, margin and decisions that stop depending on you.
           </p>
           <div className="mt-8">
             <TypedQuestion />
           </div>
           <div className="mt-8">
-            <EmailCapture
-              placeholder="your.name@yourcompany.com"
-              label="Analyze my company"
-            />
+            <EmailCapture placeholder="your.name@yourcompany.com" label="Analyze my company" />
           </div>
           <p className="mt-4 max-w-xl text-xs leading-relaxed text-muted-foreground">
-            Company email only. We research public information about your company and
-            return the likely pains and where AI creates value. No commitment.
+            Company email only. We research public information about your company and return the
+            likely pains and where AI creates value. No commitment.
           </p>
           <a
             href="#paths"
@@ -182,9 +173,7 @@ function Index() {
       </section>
 
       <section className="border-b border-border/60 py-14">
-        <p className="eyebrow text-center">
-          Companies already deciding with AI alongside us
-        </p>
+        <p className="eyebrow text-center">Companies already deciding with AI alongside us</p>
         <div className="marquee-wrap mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
           <div className="marquee-track flex w-max items-center gap-16">
             {[...LOGOS, ...LOGOS].map((name, i) => (
@@ -194,7 +183,6 @@ function Index() {
               >
                 {name}
               </span>
-
             ))}
           </div>
         </div>
@@ -205,45 +193,36 @@ function Index() {
           <p className="eyebrow">What we do</p>
           <h2 className="mt-3 text-4xl sm:text-5xl">We solve business problems.</h2>
           <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-            Software is the means. The outcome we deliver is measured in time
-            recovered, decisions delegated and margin protected.
+            Software is the means. The outcome we deliver is measured in time recovered, decisions
+            delegated and margin protected.
           </p>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {PILLARS.map((p) => (
               <article key={p.title} className="surface-card p-8">
                 <h3 className="text-2xl">{p.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  {p.body}
-                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section
-        id="contact"
-        className="hero-backdrop border-b border-border/60 py-24"
-      >
+      <section id="contact" className="hero-backdrop border-b border-border/60 py-24">
         <div className="mx-auto max-w-[1200px] px-5">
           <p className="eyebrow">What we could do together</p>
           <h2 className="mt-3 max-w-3xl text-4xl sm:text-5xl">
             How far your company can go with AI
           </h2>
           <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-            Leave your contact and we show you, on your own case, where AI creates
-            value in your business. While we do it, this site becomes yours.
+            Leave your contact and we show you, on your own case, where AI creates value in your
+            business. While we do it, this site becomes yours.
           </p>
           <div className="mt-8">
-            <EmailCapture
-              placeholder="Work email"
-              label="See what we could do together"
-            />
+            <EmailCapture placeholder="Work email" label="See what we could do together" />
           </div>
           <p className="mt-4 max-w-xl text-xs leading-relaxed text-muted-foreground">
-            Work email only. We analyse the domain of your email, using public
-            information. By continuing, you agree that we may contact you about this
-            analysis.
+            Work email only. We analyse the domain of your email, using public information. By
+            continuing, you agree that we may contact you about this analysis.
           </p>
         </div>
       </section>
@@ -253,17 +232,14 @@ function Index() {
           <p className="eyebrow">The path</p>
           <h2 className="mt-3 text-4xl sm:text-5xl">From anarchy to scale</h2>
           <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-            AI only delivers once the first two are in place. Skipping steps means
-            scaling chaos.
+            AI only delivers once the first two are in place. Skipping steps means scaling chaos.
           </p>
           <ol className="mt-14 grid gap-6 md:grid-cols-3">
             {STEPS.map((s) => (
               <li key={s.n} className="surface-card p-8">
                 <span className="font-mono text-sm text-primary">{s.n}</span>
                 <h3 className="mt-4 text-2xl">{s.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  {s.body}
-                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
               </li>
             ))}
           </ol>
@@ -279,9 +255,7 @@ function Index() {
       <section id="paths" className="border-b border-border/60 py-24">
         <div className="mx-auto max-w-[1200px] px-5">
           <p className="eyebrow">How we work with you</p>
-          <h2 className="mt-3 text-4xl sm:text-5xl">
-            Three paths to an intelligent business
-          </h2>
+          <h2 className="mt-3 text-4xl sm:text-5xl">Three paths to an intelligent business</h2>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {PATHS.map((p) => (
               <article key={p.title} className="surface-card flex flex-col p-8">
@@ -289,10 +263,7 @@ function Index() {
                 <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {p.body}
                 </p>
-                  <Link
-                  to={p.to}
-                  className="mt-6 text-sm font-semibold text-primary hover:underline"
-                >
+                <Link to={p.to} className="mt-6 text-sm font-semibold text-primary hover:underline">
                   {p.cta}
                 </Link>
               </article>
@@ -307,8 +278,8 @@ function Index() {
             If your demand doubled tomorrow, what would break first?
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">
-            It is the question we open every diagnostic conversation with. If the
-            answer makes you uncomfortable, that is where we should start.
+            It is the question we open every diagnostic conversation with. If the answer makes you
+            uncomfortable, that is where we should start.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a

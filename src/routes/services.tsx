@@ -97,8 +97,8 @@ function ServicesPage() {
             and then scale.
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            Software is the means. What we deliver is measured in time recovered,
-            decisions delegated and margin protected — in that order.
+            Software is the means. What we deliver is measured in time recovered, decisions
+            delegated and margin protected — in that order.
           </p>
           <Link
             to="/ai-development"
@@ -118,9 +118,7 @@ function ServicesPage() {
             {OFFERS.map((offer) => (
               <article key={offer.title} className="surface-card flex flex-col p-8">
                 <h3 className="text-2xl">{offer.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  {offer.body}
-                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{offer.body}</p>
                 <ul className="mt-6 flex-1 space-y-2.5 text-sm text-foreground/80">
                   {offer.points.map((point) => (
                     <li key={point} className="flex gap-3">
@@ -132,7 +130,10 @@ function ServicesPage() {
                   ))}
                 </ul>
                 {offer.to ? (
-                  <Link to={offer.to} className="mt-6 text-sm font-semibold text-primary hover:underline">
+                  <Link
+                    to={offer.to}
+                    className="mt-6 text-sm font-semibold text-primary hover:underline"
+                  >
                     Explore this service →
                   </Link>
                 ) : null}
@@ -150,9 +151,7 @@ function ServicesPage() {
             {DELIVERABLES.map((item) => (
               <article key={item.title} className="surface-card p-8">
                 <h3 className="text-2xl">{item.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  {item.body}
-                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
               </article>
             ))}
           </div>
@@ -163,8 +162,7 @@ function ServicesPage() {
         <div className="mx-auto max-w-3xl px-5 text-center">
           <h2 className="text-4xl sm:text-5xl">Not sure which one you need?</h2>
           <p className="mt-6 text-lg text-muted-foreground">
-            Most companies start with the diagnosis. It usually decides the rest for
-            them.
+            Most companies start with the diagnosis. It usually decides the rest for them.
           </p>
           <Link
             to="/ai-development"

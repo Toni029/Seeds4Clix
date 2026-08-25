@@ -1,3 +1,37 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServiceDetail } from "../components/service-detail";
-export const Route = createFileRoute("/ai-roadmap")({ head: () => ({ meta: [{ title: "AI Strategic Roadmap | Seeds4Clix" }, { name: "description", content: "A strategic AI roadmap prioritized by impact and risk." }] }), component: () => <ServiceDetail eyebrow="AI Strategic Roadmap" title="Know what to automate before you automate." intro="A grounded diagnosis of your operation, followed by a prioritized sequence of opportunities. No innovation theatre — just the clearest route to time, margin and momentum." cta="Start a diagnosis" examples={[{ title: "Find the expensive repeat", body: "We identify where senior people are repeating decisions, moving information or correcting avoidable errors." }, { title: "Model the upside", body: "Every opportunity is sized by value, effort, risk and readiness — not by how impressive the technology sounds." }, { title: "Align the whole team", body: "The roadmap gives leaders and operators one shared view of what changes, why it matters and what comes next." }]} steps={["We interview the people closest to the work and trace the critical journeys end to end.", "We score opportunities by impact, risk and implementation readiness.", "You leave with a sequence the business can act on — and our support to make it real."]} /> });
+export const Route = createFileRoute("/ai-roadmap")({
+  head: () => ({
+    meta: [
+      { title: "AI Strategic Roadmap | Seeds4Clix" },
+      { name: "description", content: "A strategic AI roadmap prioritized by impact and risk." },
+    ],
+  }),
+  component: () => (
+    <ServiceDetail
+      eyebrow="AI Strategic Roadmap"
+      title="Know what to automate before you automate."
+      intro="A grounded diagnosis of your operation, followed by a prioritized sequence of opportunities. No innovation theatre — just the clearest route to time, margin and momentum."
+      cta="Start a diagnosis"
+      examples={[
+        {
+          title: "Find the expensive repeat",
+          body: "We identify where senior people are repeating decisions, moving information or correcting avoidable errors.",
+        },
+        {
+          title: "Model the upside",
+          body: "Every opportunity is sized by value, effort, risk and readiness — not by how impressive the technology sounds.",
+        },
+        {
+          title: "Align the whole team",
+          body: "The roadmap gives leaders and operators one shared view of what changes, why it matters and what comes next.",
+        },
+      ]}
+      steps={[
+        "We interview the people closest to the work and trace the critical journeys end to end.",
+        "We score opportunities by impact, risk and implementation readiness.",
+        "You leave with a sequence the business can act on — and our support to make it real.",
+      ]}
+    />
+  ),
+});
