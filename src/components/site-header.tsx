@@ -30,13 +30,20 @@ export function SiteHeader() {
       >
         <Link
           to="/"
-          className="group text-xl font-bold tracking-tight transition-transform duration-300 hover:-translate-y-0.5"
+          aria-label="Seeds4Clix home"
+          className="group flex items-center gap-2 text-xl font-bold tracking-tight transition-transform duration-300 hover:-translate-y-0.5"
         >
-          Seeds
-          <span className="text-gradient-headline inline-block transition-transform duration-500 group-hover:scale-125">
-            4
+          <img
+            src="/seeds4clix-logo.png"
+            alt=""
+            aria-hidden="true"
+            className="size-9 object-contain transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+          <span>
+            Seeds
+            <span className="text-gradient-headline inline-block">4</span>
+            CLix
           </span>
-          CLix
         </Link>
         <nav className="hidden items-center gap-8 text-sm text-foreground/80 lg:flex">
           {NAV.map((item) => (

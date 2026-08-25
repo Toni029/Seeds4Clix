@@ -27,19 +27,19 @@ export const Route = createFileRoute("/")({
 });
 
 const LOGOS = [
-  "149Photos",
-  "Algar",
-  "Continental",
-  "HGreg",
-  "HoneyBook",
-  "IMP Diagnostics",
-  "Matador",
-  "Metro do Porto",
-  "MobileODT",
-  "P2Sample",
-  "Pentadata",
-  "PicUP",
-  "Vonovia",
+  { name: "149Photos", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/149photos/default.svg" },
+  { name: "Algar", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/algar/default.svg" },
+  { name: "Continental", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/continental/default.svg" },
+  { name: "HGreg", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/hgreg/default.svg" },
+  { name: "HoneyBook", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/honeybook/default.svg" },
+  { name: "IMP Diagnostics", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/imp-diagnostics/default.svg" },
+  { name: "Matador", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/matador/default.svg" },
+  { name: "Metro do Porto", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/metro-do-porto/default.svg" },
+  { name: "MobileODT", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/mobileodt/default.svg" },
+  { name: "P2Sample", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/p2sample/default.svg" },
+  { name: "Pentadata", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/pentadata/default.svg" },
+  { name: "PicUP", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/picup/default.svg" },
+  { name: "Vonovia", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/vonovia/default.svg" },
 ];
 
 const PILLARS = [
@@ -143,7 +143,7 @@ function Index() {
       <section className="hero-backdrop relative isolate overflow-hidden border-b border-border/60">
         <div className="relative mx-auto max-w-[1200px] px-5 py-24 sm:py-32">
           <h1 className="max-w-3xl text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
-            <span className="text-gradient-headline">Scale your company</span>
+            <span className="text-gradient-headline scale-title-gradient">Scale your company</span>
             <br />
             with Artificial Intelligence.
           </h1>
@@ -174,12 +174,17 @@ function Index() {
         <p className="eyebrow text-center">Companies already deciding with AI alongside us</p>
         <div className="marquee-wrap mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
           <div className="marquee-track flex w-max items-center gap-16">
-            {[...LOGOS, ...LOGOS].map((name, i) => (
+            {[...LOGOS, ...LOGOS].map((logo, i) => (
               <span
-                key={`${name}-${i}`}
-                className="whitespace-nowrap text-lg font-semibold text-muted-foreground/50 transition-colors duration-300 hover:text-primary"
+                key={`${logo.name}-${i}`}
+                className="flex h-10 min-w-28 items-center justify-center opacity-55 transition-opacity duration-300 hover:opacity-100"
               >
-                {name}
+                <img
+                  src={logo.src}
+                  alt={`${logo.name} logo`}
+                  loading="lazy"
+                  className="max-h-8 max-w-32 object-contain brightness-0 invert"
+                />
               </span>
             ))}
           </div>
