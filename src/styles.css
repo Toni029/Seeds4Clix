@@ -265,7 +265,7 @@
   );
   background-size: 240% 100%;
   background-position: 0% 50%;
-  animation: scale-title-shift 14s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  animation: scale-title-shift 7s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
 }
 
 @keyframes scale-title-shift {
