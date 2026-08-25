@@ -253,26 +253,27 @@
   animation: gradient-pan 7s linear infinite alternate;
 }
 
-/* The hero title gets a more organic, randomized green-to-blue color field. */
+/* A continuous, soft green-to-blue blend for the hero title. */
 .scale-title-gradient {
-  background-image:
-    radial-gradient(circle at 18% 32%, oklch(0.78 0.2 164) 0 12%, transparent 34%),
-    radial-gradient(circle at 72% 68%, oklch(0.7 0.2 236) 0 15%, transparent 42%),
-    linear-gradient(112deg, oklch(0.68 0.2 178), oklch(0.73 0.18 205) 43%, oklch(0.65 0.2 258));
-  background-size: 145% 145%, 170% 170%, 220% auto;
-  background-position: 12% 42%, 88% 58%, 0% 50%;
-  animation: scale-title-shift 9s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  background-image: linear-gradient(
+    105deg,
+    oklch(0.74 0.19 164) 0%,
+    oklch(0.72 0.19 181) 28%,
+    oklch(0.7 0.18 205) 52%,
+    oklch(0.66 0.19 232) 76%,
+    oklch(0.63 0.2 258) 100%
+  );
+  background-size: 240% 100%;
+  background-position: 0% 50%;
+  animation: scale-title-shift 14s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
 }
 
 @keyframes scale-title-shift {
   0% {
-    background-position: 12% 42%, 88% 58%, 0% 50%;
-  }
-  50% {
-    background-position: 34% 62%, 64% 36%, 90% 48%;
+    background-position: 0% 50%;
   }
   100% {
-    background-position: 78% 28%, 22% 72%, 180% 54%;
+    background-position: 100% 50%;
   }
 }
 
