@@ -147,14 +147,6 @@
 
 @utility hero-backdrop {
   background-color: var(--background);
-  background-image: var(--glow-warm), var(--glow-cool),
-    linear-gradient(to right, oklch(1 0 0 / 3%) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(1 0 0 / 3%) 1px, transparent 1px);
-  background-size:
-    100% 100%,
-    100% 100%,
-    72px 72px,
-    72px 72px;
 }
 
 @utility text-gradient-headline {
@@ -433,14 +425,6 @@ input:focus {
   pointer-events: auto;
   filter: blur(0.15px);
   mask-image: linear-gradient(to bottom, black 0%, black 72%, transparent 100%);
-}
-
-.hero-backdrop::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 22%, color-mix(in oklab, var(--background) 74%, transparent) 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
