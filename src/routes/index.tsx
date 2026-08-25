@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { NeuralField } from "../components/neural-field";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -142,7 +141,6 @@ function Index() {
   return (
     <div>
       <section className="hero-backdrop relative isolate overflow-hidden border-b border-border/60">
-        <NeuralField />
         <div className="relative mx-auto max-w-[1200px] px-5 py-24 sm:py-32">
           <h1 className="max-w-3xl text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
             <span className="text-gradient-headline">Scale your company</span>

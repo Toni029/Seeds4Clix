@@ -11,6 +11,12 @@ interface Node {
   focus: boolean;
 }
 
+/**
+ * Full-page ambient particle network. Mounted once in the root layout as a
+ * fixed background so the "matrix" style node field is visible behind every
+ * section, from the top of the page to the bottom, while staying out of the
+ * way of clicks (pointer-events: none) and scrolling with the viewport.
+ */
 export function NeuralField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -20,16 +26,18 @@ export function NeuralField() {
     if (!canvas || !context) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const pointerTarget = { x: -1000, y: -1000 };
     const pointer = { x: -1000, y: -1000 };
-    const nodes: Node[] = Array.from({ length: 62 }, (_, index) => ({
+    const nodeCount = window.innerWidth < 640 ? 58 : 96;
+    const nodes: Node[] = Array.from({ length: nodeCount }, (_, index) => ({
       x: Math.random(),
       y: Math.random(),
-      vx: (Math.random() - 0.5) * 0.00008,
-      vy: (Math.random() - 0.5) * 0.00008,
+      vx: (Math.random() - 0.5) * 0.00006,
+      vy: 0.00003 + Math.random() * 0.00005,
       radius: 0.7 + Math.random() * 1.5,
-      opacity: 0.22 + Math.random() * 0.42,
+      opacity: 0.2 + Math.random() * 0.4,
       phase: Math.random() * Math.PI * 2,
-      focus: index % 9 === 0,
+      focus: index % 10 === 0,
     }));
 
     let width = 1;
@@ -39,10 +47,9 @@ export function NeuralField() {
     let running = true;
 
     const resize = () => {
-      const rect = canvas.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = Math.max(1, rect.width);
-      height = Math.max(1, rect.height);
+      width = Math.max(1, window.innerWidth);
+      height = Math.max(1, window.innerHeight);
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -55,12 +62,23 @@ export function NeuralField() {
       const seconds = now * 0.001;
       context.clearRect(0, 0, width, height);
 
+      // Smoothly ease the tracked pointer toward its real position so the
+      // highlight glides instead of snapping — this is what makes the
+      // interaction feel fluid rather than jittery.
+      const ease = 1 - Math.pow(0.001, elapsed / 1000);
+      pointer.x += (pointerTarget.x - pointer.x) * ease;
+      pointer.y += (pointerTarget.y - pointer.y) * ease;
+
       const points = nodes.map((node) => {
         if (!reducedMotion.matches) {
           node.x += node.vx * elapsed;
           node.y += node.vy * elapsed;
-          if (node.x < -0.04 || node.x > 1.04) node.vx *= -1;
-          if (node.y < -0.04 || node.y > 1.04) node.vy *= -1;
+          if (node.x < -0.04) node.x = 1.04;
+          if (node.x > 1.04) node.x = -0.04;
+          if (node.y > 1.04) {
+            node.y = -0.04;
+            node.x = Math.random();
+          }
         }
         const breathing = Math.sin(seconds * 0.35 + node.phase) * 4;
         const x = node.x * width + Math.cos(node.phase) * breathing;
@@ -74,7 +92,7 @@ export function NeuralField() {
           const b = points[next];
           const distance = Math.hypot(a.x - b.x, a.y - b.y);
           if (distance > 138) continue;
-          const strength = (1 - distance / 138) * 0.2;
+          const strength = (1 - distance / 138) * 0.18;
           context.strokeStyle = `oklch(0.78 0.16 170 / ${strength})`;
           context.lineWidth = 0.65;
           context.beginPath();
@@ -103,13 +121,12 @@ export function NeuralField() {
     };
 
     const onPointerMove = (event: PointerEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      pointer.x = event.clientX - rect.left;
-      pointer.y = event.clientY - rect.top;
+      pointerTarget.x = event.clientX;
+      pointerTarget.y = event.clientY;
     };
     const onPointerLeave = () => {
-      pointer.x = -1000;
-      pointer.y = -1000;
+      pointerTarget.x = -1000;
+      pointerTarget.y = -1000;
     };
     const onVisibilityChange = () => {
       running = document.visibilityState === "visible";
@@ -120,20 +137,19 @@ export function NeuralField() {
       }
     };
 
-    const observer = new ResizeObserver(resize);
     resize();
     draw(performance.now());
-    observer.observe(canvas);
-    canvas.addEventListener("pointermove", onPointerMove, { passive: true });
-    canvas.addEventListener("pointerleave", onPointerLeave, { passive: true });
+    window.addEventListener("resize", resize);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerleave", onPointerLeave, { passive: true });
     document.addEventListener("visibilitychange", onVisibilityChange);
 
     return () => {
       running = false;
       cancelAnimationFrame(frame);
-      observer.disconnect();
-      canvas.removeEventListener("pointermove", onPointerMove);
-      canvas.removeEventListener("pointerleave", onPointerLeave);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerleave", onPointerLeave);
       document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);

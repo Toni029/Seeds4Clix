@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
 import { ScrollReveal } from "../components/scroll-reveal";
+import { NeuralField } from "../components/neural-field";
+import { SparkleField } from "../components/sparkle-field";
 
 
 function NotFoundComponent() {
@@ -131,7 +133,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-background text-foreground">
+      <NeuralField />
+      <SparkleField />
+      <div className="relative min-h-screen text-foreground">
         <SiteHeader />
         <ScrollReveal />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}

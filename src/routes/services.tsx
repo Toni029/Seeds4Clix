@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { NeuralField } from "../components/neural-field";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -88,7 +87,6 @@ function ServicesPage() {
   return (
     <div>
       <section className="hero-backdrop relative isolate overflow-hidden border-b border-border/60">
-        <NeuralField />
         <div className="relative mx-auto max-w-[1200px] px-5 py-24 sm:py-28">
           <p className="eyebrow">Services</p>
           <h1 className="mt-4 max-w-3xl text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
