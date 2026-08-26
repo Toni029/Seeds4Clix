@@ -571,16 +571,25 @@ input:focus {
  .three-column-grid p, .path-grid p, .split-section p, .final-cta p { margin-top: 1rem; color: var(--muted-foreground); font-size: 0.875rem; line-height: 1.625; }
  .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; border-block: 1px solid var(--border); }
  .outline-link { display: inline-flex; margin-top: 3rem; border: 1px solid var(--border); border-radius: 999px; padding: 0.9rem 1.25rem; color: var(--foreground); }
- .path-grid { list-style: none; padding: 0; }
- .moving-path { position: relative; }
- .moving-path::before { content: ""; position: absolute; left: 8%; right: 8%; top: 1.75rem; height: 1px; background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent); background-size: 200% 100%; animation: path-flow 4s ease-in-out infinite alternate; opacity: 0.8; }
- .path-step { z-index: 1; }
- .path-step-number { position: relative; z-index: 2; width: 2.25rem; height: 2.25rem; display: grid; place-items: center; margin-bottom: 1.25rem !important; border: 1px solid var(--primary); border-radius: 999px; background: var(--background); color: var(--primary); animation: path-node 3s ease-in-out infinite; }
- .path-step:nth-child(2) .path-step-number { animation-delay: 0.45s; }
- .path-step:nth-child(3) .path-step-number { animation-delay: 0.9s; }
- @keyframes path-flow { from { background-position: 0% 50%; transform: translateX(-2%); } to { background-position: 100% 50%; transform: translateX(2%); } }
+ .path-grid { position: relative; list-style: none; padding: 0; }
+ .moving-path { isolation: isolate; }
+ .path-track { position: absolute; top: 1.1rem; left: 11%; right: 11%; height: 2px; overflow: visible; background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent); background-size: 200% 100%; animation: path-flow 5s ease-in-out infinite alternate; opacity: 0.72; }
+ .path-track::before, .path-track::after { content: ""; position: absolute; top: 50%; width: 0.45rem; height: 0.45rem; border-radius: 999px; background: var(--accent); transform: translateY(-50%); box-shadow: 0 0 0 5px color-mix(in oklab, var(--accent) 12%, transparent); }
+ .path-track::before { left: 0; }
+ .path-track::after { right: 0; }
+ .path-track-signal { position: absolute; top: 50%; left: 0; width: 0.5rem; height: 0.5rem; border-radius: 999px; background: var(--foreground); box-shadow: 0 0 0 5px color-mix(in oklab, var(--primary) 24%, transparent), 0 0 18px var(--primary); transform: translate(-50%, -50%); animation: signal-travel 5s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+ .path-step { position: relative; z-index: 1; border-color: color-mix(in oklab, var(--border) 88%, var(--primary)); transition: transform .5s cubic-bezier(.22,1,.36,1), border-color .4s ease, box-shadow .4s ease; animation: path-card-in .8s cubic-bezier(.22,1,.36,1) both; }
+ .path-step:nth-of-type(2) { animation-delay: .16s; }
+ .path-step:nth-of-type(3) { animation-delay: .32s; }
+ .path-step:hover { transform: translateY(-8px); border-color: color-mix(in oklab, var(--primary) 55%, var(--border)); box-shadow: 0 24px 55px -32px color-mix(in oklab, var(--primary) 65%, transparent); }
+ .path-step-number { position: relative; z-index: 2; width: 2.25rem; height: 2.25rem; display: grid; place-items: center; margin-bottom: .75rem !important; border: 1px solid var(--primary); border-radius: 999px; background: var(--background); color: var(--primary); animation: path-node 3s ease-in-out infinite; }
+ .path-step-kicker, .path-step-state { display: block; margin-bottom: .6rem; color: var(--primary); font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; }
+ .path-step-state { margin-top: auto; padding-top: 1.5rem; margin-bottom: 0; color: var(--muted-foreground); }
+ @keyframes path-flow { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+ @keyframes signal-travel { 0% { left: 0%; opacity: 0; } 10%, 90% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+ @keyframes path-card-in { from { opacity: .4; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
  @keyframes path-node { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 28%, transparent); } 50% { box-shadow: 0 0 0 8px color-mix(in oklab, var(--primary) 0%, transparent); } }
- .path-grid li > span { display: block; margin-bottom: 0.5rem; color: var(--primary); font-family: var(--font-mono); font-size: 0.875rem; }
+ .path-grid li > span { display: block; }
 .final-cta { max-width: 900px; margin: 0 auto; padding: 8rem 1.5rem; text-align: center; }
 .final-cta h2, .final-cta p { margin-inline: auto; }
 .cta-actions { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
@@ -591,7 +600,14 @@ input:focus {
   .lead-form, .split-section, .three-column-grid, .path-grid { display: flex; flex-direction: column; }
   .lead-form button { width: 100%; }
   .split-section { gap: 2rem; }
-  .moving-path::before { top: 1.75rem; bottom: 1.75rem; left: 1.1rem; right: auto; width: 1px; height: auto; background: linear-gradient(180deg, transparent, var(--primary), var(--accent), transparent); }
+  .path-track { top: 1.1rem; bottom: 1.1rem; left: 1.1rem; right: auto; width: 2px; height: auto; background: linear-gradient(180deg, transparent, var(--primary), var(--accent), transparent); background-size: 100% 200%; animation-name: path-flow-vertical; }
+  .path-track::before { top: 0; left: 50%; transform: translate(-50%, -50%); }
+  .path-track::after { top: auto; right: auto; bottom: 0; left: 50%; transform: translate(-50%, 50%); }
+  .path-track-signal { top: 0; left: 50%; transform: translate(-50%, -50%); animation-name: signal-travel-vertical; }
+  .path-step { padding-left: 3.5rem !important; }
+  .path-step-number { position: absolute; top: 1rem; left: 0; }
+  @keyframes path-flow-vertical { from { background-position: 50% 0%; } to { background-position: 50% 100%; } }
+  @keyframes signal-travel-vertical { 0% { top: 0%; opacity: 0; } 10%, 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
   .content-section, .split-section { padding-block: 5rem; }
   .cta-actions { flex-direction: column; align-items: stretch; }
 }

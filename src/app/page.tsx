@@ -206,11 +206,20 @@ export default function HomePage() {
           the chaos faster.
         </p>
         <ol className="path-grid moving-path">
+          <span className="path-track" aria-hidden="true">
+            <span className="path-track-signal" />
+          </span>
           {paths.map((path, index) => (
             <li className="surface-card path-step flex flex-col p-8" key={path.title}>
-              <span className="path-step-number">{index + 1}</span>
+              <span className="path-step-number" aria-hidden="true">
+                {index + 1}
+              </span>
+              <span className="path-step-kicker">Stage {index + 1}</span>
               <h3>{path.title}</h3>
               <p>{path.body}</p>
+              <span className="path-step-state">
+                {index === 0 ? "Observe" : index === 1 ? "Automate" : "Compound"}
+              </span>
             </li>
           ))}
         </ol>
