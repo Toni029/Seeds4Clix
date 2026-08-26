@@ -118,10 +118,10 @@ export default function HomePage() {
     <div>
       <section className="home-hero">
         <div className="home-hero-content">
-          <h1>
-            <span>Scale your company</span>
+          <h1 className="hero-title">
+            <span className="hero-title-lead scale-title-gradient">Scale your company</span>
             <br />
-            with Artificial Intelligence.
+            <span className="hero-title-subtitle">with Artificial Intelligence.</span>
           </h1>
           <p className="hero-copy">
             We find where your business stalls, automate the repetitive work, and give you back
@@ -180,7 +180,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="split-section">
+      <section className="split-section needle-section">
         <div>
           <p className="eyebrow">What we could do together</p>
           <h2>See where AI moves the needle in your business</h2>
