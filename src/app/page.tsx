@@ -139,7 +139,7 @@ export default function HomePage() {
               "With the process written down and automated, volume grows without the team growing with it. The strategic plan keeps the queue ordered by real return.",
             ],
           ].map(([title, body]) => (
-            <article className="plain-card" key={title}>
+            <article className="surface-card p-8" key={title}>
               <h3>{title}</h3>
               <p>{body}</p>
             </article>
@@ -173,7 +173,7 @@ export default function HomePage() {
         </p>
         <ol className="path-grid">
           {paths.map((path, index) => (
-            <li key={path.title}>
+            <li className="surface-card flex flex-col p-8" key={path.title}>
               <span>{index + 1}</span>
               <h3>{path.title}</h3>
               <p>{path.body}</p>
@@ -190,7 +190,7 @@ export default function HomePage() {
         <h2>Three paths to an intelligent business</h2>
         <div className="three-column-grid">
           {offers.map((offer) => (
-            <article className="plain-card" key={offer.title}>
+            <article className="surface-card p-8" key={offer.title}>
               <h3>{offer.title}</h3>
               <p>{offer.body}</p>
               <Link className="text-link" href={offer.href}>

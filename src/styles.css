@@ -500,14 +500,13 @@ input:focus {
 .logo-track { display: flex; width: max-content; gap: 3.5rem; margin-top: 2rem; color: var(--muted-foreground); font-size: 0.95rem; animation: marquee 38s linear infinite; }
 .content-section, .split-section { max-width: 1200px; margin: 0 auto; padding: 8rem max(1.5rem, 4vw); }
 .content-section h2, .split-section h2, .final-cta h2 { max-width: 850px; margin-top: 0.75rem; font-size: clamp(2.7rem, 5vw, 4.8rem); line-height: 1; letter-spacing: -0.055em; }
-.three-column-grid, .path-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 4rem; }
-.plain-card, .path-grid li { border-top: 1px solid var(--border); padding: 1.5rem 0; }
-.plain-card h3, .path-grid h3 { font-size: 1.45rem; }
-.plain-card p, .path-grid p, .split-section p, .final-cta p { margin-top: 1rem; color: var(--muted-foreground); line-height: 1.6; }
-.split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; border-block: 1px solid var(--border); }
-.outline-link { display: inline-flex; margin-top: 3rem; border: 1px solid var(--border); border-radius: 999px; padding: 0.9rem 1.25rem; color: var(--foreground); }
-.path-grid { list-style: none; padding: 0; }
-.path-grid li > span { color: var(--primary); font-family: var(--font-mono); }
+ .three-column-grid, .path-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-top: 4rem; }
+ .three-column-grid h3, .path-grid h3 { margin: 0; font-size: 1.5rem; font-weight: 700; }
+ .three-column-grid p, .path-grid p, .split-section p, .final-cta p { margin-top: 1rem; color: var(--muted-foreground); font-size: 0.875rem; line-height: 1.625; }
+ .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; border-block: 1px solid var(--border); }
+ .outline-link { display: inline-flex; margin-top: 3rem; border: 1px solid var(--border); border-radius: 999px; padding: 0.9rem 1.25rem; color: var(--foreground); }
+ .path-grid { list-style: none; padding: 0; }
+ .path-grid li > span { display: block; margin-bottom: 0.5rem; color: var(--primary); font-family: var(--font-mono); font-size: 0.875rem; }
 .final-cta { max-width: 900px; margin: 0 auto; padding: 8rem 1.5rem; text-align: center; }
 .final-cta h2, .final-cta p { margin-inline: auto; }
 .cta-actions { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
