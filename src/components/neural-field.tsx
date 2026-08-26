@@ -29,15 +29,15 @@ export function NeuralField() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const pointerTarget = { x: -1000, y: -1000 };
     const pointer = { x: -1000, y: -1000 };
-    const nodeCount = window.innerWidth < 640 ? 58 : 96;
+    const nodeCount = window.innerWidth < 640 ? 68 : 112;
     const nodes: Node[] = Array.from({ length: nodeCount }, (_, index) => ({
       x: Math.random(),
       y: Math.random(),
       vx: (Math.random() - 0.5) * 0.00006,
       vy: (Math.random() - 0.5) * 0.00006,
       drift: Math.random() * Math.PI * 2,
-      radius: 0.7 + Math.random() * 1.5,
-      opacity: 0.2 + Math.random() * 0.4,
+      radius: 0.9 + Math.random() * 1.7,
+      opacity: 0.28 + Math.random() * 0.44,
       phase: Math.random() * Math.PI * 2,
       focus: index % 10 === 0,
     }));
@@ -98,7 +98,7 @@ export function NeuralField() {
           const b = points[next];
           const distance = Math.hypot(a.x - b.x, a.y - b.y);
           if (distance > 138) continue;
-          const strength = (1 - distance / 138) * 0.18;
+          const strength = (1 - distance / 138) * 0.24;
           context.strokeStyle = `oklch(0.78 0.16 170 / ${strength})`;
           context.lineWidth = 0.65;
           context.beginPath();

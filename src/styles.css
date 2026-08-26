@@ -449,9 +449,9 @@ input:focus {
   z-index: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0.55;
+  opacity: 0.66;
   pointer-events: none;
-  filter: blur(0.15px);
+  filter: blur(0.1px);
 }
 
 .relative.min-h-screen {
