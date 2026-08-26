@@ -94,6 +94,12 @@ export function SiteHeader() {
             </DropdownMenuContent>
           </DropdownMenu>
           <Link
+            href="/tools"
+            className="nav-link transition-colors duration-300 hover:text-primary"
+          >
+            Tools
+          </Link>
+          <Link
             href="/about"
             className="nav-link transition-colors duration-300 hover:text-primary"
           >
