@@ -98,11 +98,17 @@ export function ChaosOrderField({ targetRef }: { targetRef: RefObject<HTMLElemen
       ctx.stroke();
       ctx.shadowBlur = 0;
 
-      // Move the highlight gently across the entire curve, including the final scale point.
-      // A continuous index avoids the abrupt jumps caused by cycling through only half the points.
-      const signalPosition = reduce.matches ? points.length - 1 : (t * 3.2) % points.length;
+      // One slow journey from the first point to the final endpoint.
+      // The endpoint gets a short hold before the signal resets to the beginning.
+      const journeySeconds = 26;
+      const endpointHoldSeconds = 2;
+      const cycleSeconds = journeySeconds + endpointHoldSeconds;
+      const cycleTime = reduce.matches ? cycleSeconds : t % cycleSeconds;
+      const journeyProgress = Math.min(1, cycleTime / journeySeconds);
+      const easedProgress = journeyProgress * journeyProgress * (3 - 2 * journeyProgress);
+      const signalPosition = easedProgress * (points.length - 1);
       const active = Math.min(points.length - 1, Math.floor(signalPosition));
-      const signalMix = signalPosition - active;
+      const signalMix = active === points.length - 1 ? 0 : signalPosition - active;
       points.forEach((point, i) => {
         ctx.beginPath();
         ctx.fillStyle = i < 20 ? colors[0] : i < 40 ? colors[1] : colors[2];
