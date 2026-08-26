@@ -982,20 +982,17 @@ input:focus {
 .path-step::before {
   content: "";
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  width: 1.15rem;
-  height: 1.15rem;
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  background: color-mix(in oklab, var(--primary) 82%, transparent);
-  filter: drop-shadow(0 0 0 color-mix(in oklab, var(--primary) 0%, transparent));
-  animation: triangle-pulse 3.8s ease-in-out infinite;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 0%, transparent);
+  animation: card-edge-pulse 4.8s ease-in-out infinite;
 }
 .path-step:nth-of-type(2)::before {
-  animation-delay: 0.45s;
+  animation-delay: 0.7s;
 }
 .path-step:nth-of-type(3)::before {
-  animation-delay: 0.9s;
+  animation-delay: 1.4s;
 }
 .path-step:nth-of-type(2) {
   animation-delay: 0.16s;
@@ -1046,17 +1043,14 @@ input:focus {
     transform: translateY(0);
   }
 }
-@keyframes triangle-pulse {
+@keyframes card-edge-pulse {
   0%,
   100% {
-    opacity: 0.5;
-    transform: translateY(0) scale(0.9);
-    filter: drop-shadow(0 0 0 color-mix(in oklab, var(--primary) 0%, transparent));
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 0%, transparent);
   }
   50% {
-    opacity: 1;
-    transform: translateY(-2px) scale(1.08);
-    filter: drop-shadow(0 0 12px color-mix(in oklab, var(--primary) 55%, transparent));
+    box-shadow: 0 0 0 5px color-mix(in oklab, var(--primary) 18%, transparent),
+      0 0 24px color-mix(in oklab, var(--primary) 22%, transparent);
   }
 }
 .path-grid li > span {
