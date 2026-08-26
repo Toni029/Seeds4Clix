@@ -5,7 +5,25 @@ import reactHooks from "eslint-plugin-react-hooks";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist", ".output", ".vinxi"] },
+  {
+    ignores: [
+      "**/.next/**",
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/.output/**",
+      "**/.vinxi/**",
+      "**/.tanstack/**",
+      "**/.wrangler/**",
+      "**/.vercel/**",
+      "**/.lovable/**",
+      "**/public/**",
+      "**/*.md",
+      "**/*.json",
+      "**/*.css",
+      "**/*.ico",
+      "**/*.txt",
+    ],
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
