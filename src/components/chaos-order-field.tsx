@@ -98,21 +98,34 @@ export function ChaosOrderField({ targetRef }: { targetRef: RefObject<HTMLElemen
       ctx.stroke();
       ctx.shadowBlur = 0;
 
-      const active = reduce.matches ? 29 : Math.floor((t * 12) % 30);
+      // Move the highlight gently across the entire curve, including the final scale point.
+      // A continuous index avoids the abrupt jumps caused by cycling through only half the points.
+      const signalPosition = reduce.matches ? points.length - 1 : (t * 3.2) % points.length;
+      const active = Math.min(points.length - 1, Math.floor(signalPosition));
+      const signalMix = signalPosition - active;
       points.forEach((point, i) => {
         ctx.beginPath();
-        ctx.fillStyle = i < 10 ? colors[0] : i < 20 ? colors[1] : colors[2];
-        ctx.globalAlpha = i === active ? 1 : 0.8;
-        ctx.arc(point.x, point.y, i === active ? 5 : 3, 0, Math.PI * 2);
+        ctx.fillStyle = i < 20 ? colors[0] : i < 40 ? colors[1] : colors[2];
+        ctx.globalAlpha = 0.8;
+        ctx.arc(point.x, point.y, 3, 0, Math.PI * 2);
         ctx.fill();
-        if (i === active) {
-          ctx.beginPath();
-          ctx.globalAlpha = 0.35;
-          ctx.strokeStyle = ctx.fillStyle;
-          ctx.arc(point.x, point.y, 14 + Math.sin(t * 5) * 3, 0, Math.PI * 2);
-          ctx.stroke();
-        }
       });
+
+      const from = points[active];
+      const to = points[Math.min(active + 1, points.length - 1)];
+      const signalX = from.x + (to.x - from.x) * signalMix;
+      const signalY = from.y + (to.y - from.y) * signalMix;
+      const signalColor = active < 20 ? colors[0] : active < 40 ? colors[1] : colors[2];
+      ctx.beginPath();
+      ctx.fillStyle = signalColor;
+      ctx.globalAlpha = 1;
+      ctx.arc(signalX, signalY, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.globalAlpha = 0.3;
+      ctx.strokeStyle = signalColor;
+      ctx.arc(signalX, signalY, 13 + Math.sin(t * 2.4) * 2, 0, Math.PI * 2);
+      ctx.stroke();
       ctx.globalAlpha = 1;
       ctx.font = "600 10px ui-monospace, SFMono-Regular, Menlo, monospace";
       ["ANARCHY", "PROCESSES", "AI / SCALE"].forEach((label, i) => {
