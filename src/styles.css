@@ -517,7 +517,7 @@ input:focus {
  .home-hero h1 { margin: 0; max-width: 760px; font-size: clamp(2.5rem, 6vw, 5.2rem); line-height: 0.98; letter-spacing: -0.06em; }
  .hero-title-lead { display: inline-block; font-size: 1.28em; }
  .hero-title-subtitle { display: inline-block; font-size: 0.82em; color: var(--foreground); }
- .scale-title-gradient { background-size: 240% 100%; animation: scale-title-shift 6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate; }
+ .scale-title-gradient { background-size: 240% 100%; background-clip: text; -webkit-background-clip: text; color: transparent; -webkit-text-fill-color: transparent; animation: scale-title-shift 6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate; }
  .hero-copy, .section-intro { max-width: 700px; margin-top: 2.5rem; color: var(--muted-foreground); font-size: 1.1rem; line-height: 1.6; }
  .needle-section { align-items: center; }
  .needle-section > div { min-width: 0; }
