@@ -986,15 +986,21 @@ input:focus {
 .path-step-number {
   position: relative;
   z-index: 2;
+  display: grid;
   width: 2.25rem;
   height: 2.25rem;
-  display: grid;
+  flex: 0 0 2.25rem;
   place-items: center;
-  margin-bottom: 0.75rem !important;
+  margin: 0 0 0.75rem !important;
   border: 1px solid var(--primary);
   border-radius: 999px;
   background: var(--background);
   color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
   animation: path-node 3s ease-in-out infinite;
 }
 .path-step-kicker,
@@ -1052,7 +1058,22 @@ input:focus {
   margin-top: 2rem;
 }
 
+@media (max-width: 760px) {
+  .site-header > div {
+    min-width: 0;
+  }
+  .site-header .cta-glow {
+    display: none;
+  }
+}
+
 @media (max-width: 700px) {
+  .site-header > div {
+    min-width: 0;
+  }
+  .site-header .cta-glow {
+    display: none;
+  }
   .home-hero {
     min-height: 620px;
     padding-top: 5rem;

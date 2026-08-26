@@ -15,6 +15,7 @@ export function ChaosOrderField({ targetRef }: { targetRef: RefObject<HTMLElemen
     let height = 1;
     let frame = 0;
     let progress = 0;
+    let targetProgress = 0;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     const colors: [string, string, string] = ["#ff9b58", "#9ddd68", "#61b9ff"];
 
@@ -32,7 +33,7 @@ export function ChaosOrderField({ targetRef }: { targetRef: RefObject<HTMLElemen
 
     const update = () => {
       const rect = section.getBoundingClientRect();
-      progress = Math.max(
+      targetProgress = Math.max(
         0,
         Math.min(1, (window.innerHeight * 0.8 - rect.top) / (rect.height * 0.64)),
       );
@@ -40,6 +41,7 @@ export function ChaosOrderField({ targetRef }: { targetRef: RefObject<HTMLElemen
 
     const draw = (time: number) => {
       const t = time / 1000;
+      progress = reduce.matches ? targetProgress : progress + (targetProgress - progress) * 0.08;
       const ease = progress * progress * (3 - 2 * progress);
       const padX = Math.min(44, width * 0.08);
       const graphTop = Math.max(34, height * 0.13);
