@@ -987,16 +987,16 @@ input:focus {
   position: absolute;
   inset: 0;
   z-index: 2;
-  border: 0.5px solid color-mix(in oklab, var(--primary) 95%, transparent);
+  border: 0.25px solid color-mix(in oklab, var(--primary) 95%, transparent);
   border-radius: inherit;
   pointer-events: none;
   opacity: 0;
-  filter: blur(0.05px);
+  filter: blur(0.02px);
   box-shadow:
-    0 0 0 0.15px color-mix(in oklab, var(--primary) 34%, transparent),
-    0 0 2px color-mix(in oklab, var(--primary) 54%, transparent),
-    0 0 6px color-mix(in oklab, var(--primary) 22%, transparent),
-    0 0 10px color-mix(in oklab, var(--primary) 8%, transparent);
+    0 0 0 0.1px color-mix(in oklab, var(--primary) 34%, transparent),
+    0 0 1px color-mix(in oklab, var(--primary) 54%, transparent),
+    0 0 4px color-mix(in oklab, var(--primary) 22%, transparent),
+    0 0 7px color-mix(in oklab, var(--primary) 8%, transparent);
   animation: card-edge-pulse 9s ease-in-out infinite;
 }
 .path-step:nth-of-type(2)::before {
