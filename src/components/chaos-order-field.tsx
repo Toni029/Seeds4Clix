@@ -74,11 +74,15 @@ export function ChaosOrderField({ targetRef }: { targetRef: RefObject<HTMLElemen
         const processZone = Math.max(0, Math.min(1, (phase - 0.24) / 0.44));
         const scaleZone = Math.max(0, Math.min(1, (phase - 0.62) / 0.38));
         const noisy =
-          Math.sin(i * 2.45) * 30 + Math.cos(i * 1.17) * 16 + Math.sin(i * 5.2) * 8;
-        const dampedNoise =
-          noisy * (1 - processZone) * (1 - scaleZone);
-        const processRise = chartHeight * 0.14 * processZone;
-        const scaleRise = chartHeight * 0.62 * scaleZone;
+          Math.sin(i * 2.45) * 19 + Math.cos(i * 1.17) * 10 + Math.sin(i * 5.2) * 5;
+        const dampedNoise = noisy * (1 - processZone) * (1 - scaleZone);
+        const processRise = chartHeight * 0.15 * processZone;
+        const scaleT = scaleZone * scaleZone * (3 - 2 * scaleZone);
+        const scaleWobble =
+          chartHeight *
+          (0.025 * Math.sin(scaleZone * Math.PI * 3.2) +
+            0.014 * Math.sin(scaleZone * Math.PI * 7));
+        const scaleRise = chartHeight * 0.62 * scaleT + scaleWobble;
         const y = baseline - dampedNoise - processRise - scaleRise;
         return { x, y: Math.max(graphTop + 8, Math.min(graphBottom - 8, y)) };
       });
