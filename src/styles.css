@@ -953,6 +953,7 @@ input:focus {
   z-index: 1;
   list-style: none;
   padding: 0;
+  overflow: visible;
 }
 .chaos-order-field {
   position: relative;
@@ -971,6 +972,8 @@ input:focus {
   position: relative;
   z-index: 1;
   min-width: 0;
+  overflow: visible !important;
+  isolation: isolate;
   background-color: color-mix(in oklab, var(--card) 92%, transparent);
   border-color: color-mix(in oklab, var(--border) 88%, var(--primary));
   transition:
@@ -982,14 +985,19 @@ input:focus {
 .path-step::before {
   content: "";
   position: absolute;
-  inset: -10px;
-  border: 1px solid color-mix(in oklab, var(--primary) 82%, transparent);
-  border-radius: calc(var(--radius) + 10px);
+  inset: -12px;
+  z-index: -1;
+  border: 2px solid color-mix(in oklab, var(--primary) 95%, transparent);
+  border-radius: calc(var(--radius) + 12px);
   pointer-events: none;
   opacity: 0;
-  filter: blur(0.2px);
-  box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 0%, transparent);
-  animation: card-edge-pulse 9s linear infinite;
+  filter: blur(0.4px);
+  box-shadow:
+    0 0 0 4px color-mix(in oklab, var(--primary) 34%, transparent),
+    0 0 22px color-mix(in oklab, var(--primary) 90%, transparent),
+    0 0 58px color-mix(in oklab, var(--primary) 68%, transparent),
+    0 0 105px color-mix(in oklab, var(--primary) 38%, transparent);
+  animation: card-edge-pulse 9s ease-in-out infinite;
 }
 .path-step:nth-of-type(2)::before {
   animation-delay: 3s;
