@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef } from "react";
 
 interface Node {
@@ -29,15 +30,15 @@ export function NeuralField() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const pointerTarget = { x: -1000, y: -1000 };
     const pointer = { x: -1000, y: -1000 };
-    const nodeCount = window.innerWidth < 640 ? 58 : 96;
+    const nodeCount = window.innerWidth < 640 ? 68 : 112;
     const nodes: Node[] = Array.from({ length: nodeCount }, (_, index) => ({
       x: Math.random(),
       y: Math.random(),
       vx: (Math.random() - 0.5) * 0.00006,
       vy: (Math.random() - 0.5) * 0.00006,
       drift: Math.random() * Math.PI * 2,
-      radius: 0.7 + Math.random() * 1.5,
-      opacity: 0.2 + Math.random() * 0.4,
+      radius: 0.9 + Math.random() * 1.7,
+      opacity: 0.28 + Math.random() * 0.44,
       phase: Math.random() * Math.PI * 2,
       focus: index % 10 === 0,
     }));
@@ -88,17 +89,20 @@ export function NeuralField() {
         const breathing = Math.sin(seconds * 0.35 + node.phase) * 4;
         const x = node.x * width + Math.cos(node.phase) * breathing;
         const scrollOffset = (scrollPosition * 0.18) % (height + 180);
-        const y = ((node.y * height + Math.sin(node.phase) * breathing - scrollOffset + height + 180) % (height + 180)) - 90;
+        const y =
+          ((node.y * height + Math.sin(node.phase) * breathing - scrollOffset + height + 180) %
+            (height + 180)) -
+          90;
         return { x, y, node };
       });
 
       for (let index = 0; index < points.length; index += 1) {
         for (let next = index + 1; next < points.length; next += 1) {
-          const a = points[index];
-          const b = points[next];
+          const a = points[index]!;
+          const b = points[next]!;
           const distance = Math.hypot(a.x - b.x, a.y - b.y);
           if (distance > 138) continue;
-          const strength = (1 - distance / 138) * 0.18;
+          const strength = (1 - distance / 138) * 0.24;
           context.strokeStyle = `oklch(0.78 0.16 170 / ${strength})`;
           context.lineWidth = 0.65;
           context.beginPath();
