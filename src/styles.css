@@ -982,11 +982,12 @@ input:focus {
 .path-step::before {
   content: "";
   position: absolute;
-  inset: -3px;
-  border: 1px solid color-mix(in oklab, var(--primary) 65%, transparent);
-  border-radius: inherit;
+  inset: -10px;
+  border: 1px solid color-mix(in oklab, var(--primary) 82%, transparent);
+  border-radius: calc(var(--radius) + 10px);
   pointer-events: none;
   opacity: 0;
+  filter: blur(0.2px);
   box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 0%, transparent);
   animation: card-edge-pulse 9s linear infinite;
 }
@@ -1054,8 +1055,10 @@ input:focus {
   16%,
   28% {
     opacity: 1;
-    box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary) 16%, transparent),
-      0 0 28px color-mix(in oklab, var(--primary) 32%, transparent);
+    box-shadow: 0 0 0 5px color-mix(in oklab, var(--primary) 28%, transparent),
+      0 0 18px color-mix(in oklab, var(--primary) 62%, transparent),
+      0 0 46px color-mix(in oklab, var(--primary) 38%, transparent),
+      0 0 82px color-mix(in oklab, var(--primary) 18%, transparent);
   }
   36%,
   100% {
