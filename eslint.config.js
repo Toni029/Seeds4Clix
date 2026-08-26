@@ -15,7 +15,6 @@ export default tseslint.config(
       "**/.tanstack/**",
       "**/.wrangler/**",
       "**/.vercel/**",
-      "**/.lovable/**",
       "**/public/**",
       "**/*.md",
       "**/*.json",
