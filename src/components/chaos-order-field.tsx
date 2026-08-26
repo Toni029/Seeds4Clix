@@ -42,7 +42,6 @@ export function ChaosOrderField({ targetRef }: { targetRef: RefObject<HTMLElemen
     const draw = (time: number) => {
       const t = time / 1000;
       progress = reduce.matches ? targetProgress : progress + (targetProgress - progress) * 0.08;
-      const ease = progress * progress * (3 - 2 * progress);
       const padX = Math.min(44, width * 0.08);
       const graphTop = Math.max(34, height * 0.13);
       const graphBottom = Math.min(height * 0.68, height - 92);
@@ -67,11 +66,19 @@ export function ChaosOrderField({ targetRef }: { targetRef: RefObject<HTMLElemen
         ctx.stroke();
       }
 
-      const points = Array.from({ length: 31 }, (_, i) => {
-        const x = padX + graphWidth * (i / 30);
-        const chaos = baseline - Math.sin(i * 2.7) * 28 - Math.cos(i * 1.3) * 18 - (i % 4) * 10;
-        const organized = baseline - (graphBottom - graphTop) * (0.1 + i / 42);
-        return { x, y: chaos * (1 - ease) + organized * ease };
+      const chartHeight = graphBottom - graphTop;
+      const points = Array.from({ length: 61 }, (_, i) => {
+        const x = padX + graphWidth * (i / 60);
+        const phase = i / 60;
+        const chaosAmount = Math.max(0, 1 - phase * 2.15);
+        const damping = Math.pow(1 - phase, 1.35);
+        const noisy = Math.sin(i * 2.45) * 30 + Math.cos(i * 1.17) * 16 + Math.sin(i * 5.2) * 8;
+        const stableProcess = Math.sin(phase * Math.PI * 2.4) * 5;
+        const scaleRise =
+          chartHeight * (0.08 + Math.pow(Math.max(0, (phase - 0.58) / 0.42), 1.08) * 0.72);
+        const y =
+          baseline - noisy * chaosAmount * damping - stableProcess * (1 - chaosAmount) - scaleRise;
+        return { x, y: Math.max(graphTop + 8, Math.min(graphBottom - 8, y)) };
       });
 
       ctx.beginPath();

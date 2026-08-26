@@ -2,6 +2,12 @@
 @source "../src";
 @import "tw-animate-css";
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 /*
