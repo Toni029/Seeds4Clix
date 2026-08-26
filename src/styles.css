@@ -985,18 +985,18 @@ input:focus {
 .path-step::before {
   content: "";
   position: absolute;
-  inset: -12px;
-  z-index: -1;
-  border: 2px solid color-mix(in oklab, var(--primary) 95%, transparent);
-  border-radius: calc(var(--radius) + 12px);
+  inset: 0;
+  z-index: 2;
+  border: 1px solid color-mix(in oklab, var(--primary) 95%, transparent);
+  border-radius: inherit;
   pointer-events: none;
   opacity: 0;
-  filter: blur(0.4px);
+  filter: blur(0.35px);
   box-shadow:
-    0 0 0 4px color-mix(in oklab, var(--primary) 34%, transparent),
-    0 0 22px color-mix(in oklab, var(--primary) 90%, transparent),
-    0 0 58px color-mix(in oklab, var(--primary) 68%, transparent),
-    0 0 105px color-mix(in oklab, var(--primary) 38%, transparent);
+    0 0 0 1px color-mix(in oklab, var(--primary) 45%, transparent),
+    0 0 18px color-mix(in oklab, var(--primary) 82%, transparent),
+    0 0 42px color-mix(in oklab, var(--primary) 58%, transparent),
+    0 0 72px color-mix(in oklab, var(--primary) 30%, transparent);
   animation: card-edge-pulse 9s ease-in-out infinite;
 }
 .path-step:nth-of-type(2)::before {
