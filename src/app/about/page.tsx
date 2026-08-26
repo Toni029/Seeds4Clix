@@ -1,0 +1,1 @@
+export default function AboutPage() { return <section className="mx-auto flex min-h-[60vh] max-w-6xl flex-col justify-center gap-6 px-6 py-24"><h1 className="text-5xl font-semibold tracking-tight">About Seeds4Clix</h1><p className="max-w-2xl text-lg leading-8 text-muted-foreground">We help teams move from AI curiosity to confident execution.</p></section>; }

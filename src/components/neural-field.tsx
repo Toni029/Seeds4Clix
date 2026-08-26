@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef } from "react";
 
 interface Node {
@@ -94,8 +95,8 @@ export function NeuralField() {
 
       for (let index = 0; index < points.length; index += 1) {
         for (let next = index + 1; next < points.length; next += 1) {
-          const a = points[index];
-          const b = points[next];
+          const a = points[index]!;
+          const b = points[next]!;
           const distance = Math.hypot(a.x - b.x, a.y - b.y);
           if (distance > 138) continue;
           const strength = (1 - distance / 138) * 0.24;

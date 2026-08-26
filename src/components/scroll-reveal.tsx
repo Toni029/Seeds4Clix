@@ -1,5 +1,5 @@
+"use client";
 import { useEffect } from "react";
-import { useRouterState } from "@tanstack/react-router";
 
 /**
  * Applies staggered scroll-reveal animations to page content.
@@ -7,7 +7,7 @@ import { useRouterState } from "@tanstack/react-router";
  * as they enter the viewport, re-running on every route change.
  */
 export function ScrollReveal() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = typeof window !== "undefined" ? window.location.pathname : "";
 
   useEffect(() => {
     if (typeof window === "undefined") return;

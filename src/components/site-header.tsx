@@ -1,4 +1,5 @@
-import { Link } from "@tanstack/react-router";
+"use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const NAV = [
@@ -29,7 +30,7 @@ export function SiteHeader() {
         }`}
       >
         <Link
-          to="/"
+          href="/"
           aria-label="Seeds4Clix home"
           className="group flex items-center gap-2 text-xl font-bold tracking-tight transition-transform duration-300 hover:-translate-y-0.5"
         >
@@ -49,9 +50,9 @@ export function SiteHeader() {
           {NAV.map((item) => (
             <Link
               key={item.to}
-              to={item.to}
+              href={item.to}
               className="nav-link transition-colors duration-300 hover:text-primary"
-              activeProps={{ className: "text-primary" }}
+             
             >
               {item.label}
             </Link>
@@ -62,8 +63,8 @@ export function SiteHeader() {
             EN
           </span>
           <Link
-            to="/ai-development"
-            hash="tell-us"
+            href="/ai-development"
+           
             className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground cta-glow"
           >
             I want to automate my company
