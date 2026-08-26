@@ -991,12 +991,12 @@ input:focus {
   border-radius: inherit;
   pointer-events: none;
   opacity: 0;
-  filter: blur(0.35px);
+  filter: blur(0.15px);
   box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--primary) 45%, transparent),
-    0 0 18px color-mix(in oklab, var(--primary) 82%, transparent),
-    0 0 42px color-mix(in oklab, var(--primary) 58%, transparent),
-    0 0 72px color-mix(in oklab, var(--primary) 30%, transparent);
+    0 0 0 0.5px color-mix(in oklab, var(--primary) 40%, transparent),
+    0 0 8px color-mix(in oklab, var(--primary) 72%, transparent),
+    0 0 20px color-mix(in oklab, var(--primary) 42%, transparent),
+    0 0 34px color-mix(in oklab, var(--primary) 18%, transparent);
   animation: card-edge-pulse 9s ease-in-out infinite;
 }
 .path-step:nth-of-type(2)::before {
