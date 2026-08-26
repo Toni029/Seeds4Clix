@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const sectors = [
   "E-commerce & Retail",
@@ -29,6 +29,12 @@ const paths = [
   },
 ];
 
+const heroQuestions = [
+  "If you stepped away for 90 days, would the business grow without you?",
+  "Which decisions do you repeat every week without trusted data?",
+  "What would your team stop doing if the busywork disappeared?",
+];
+
 const offers = [
   {
     title: "AI Academy",
@@ -49,6 +55,42 @@ const offers = [
     link: "See the roadmap →",
   },
 ];
+
+function HeroQuestion() {
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [visibleLength, setVisibleLength] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const question = heroQuestions[questionIndex] ?? "";
+    const isComplete = visibleLength === question.length;
+    const delay =
+      isComplete && !deleting ? 2200 : deleting && visibleLength === 0 ? 450 : deleting ? 28 : 42;
+    const timer = window.setTimeout(() => {
+      if (!deleting && visibleLength < question.length) {
+        setVisibleLength((length) => length + 1);
+      } else if (!deleting) {
+        setDeleting(true);
+      } else if (visibleLength > 0) {
+        setVisibleLength((length) => length - 1);
+      } else {
+        setDeleting(false);
+        setQuestionIndex((index) => (index + 1) % heroQuestions.length);
+      }
+    }, delay);
+    return () => window.clearTimeout(timer);
+  }, [deleting, questionIndex, visibleLength]);
+
+  const question = heroQuestions[questionIndex] ?? "";
+
+  return (
+    <div className="terminal-line" aria-live="polite" aria-label={question}>
+      <span className="terminal-prefix">?</span>
+      <span className="terminal-question">{question.slice(0, visibleLength)}</span>
+      <span className="terminal-caret" aria-hidden="true" />
+    </div>
+  );
+}
 
 function LeadForm({ compact = false }: { compact?: boolean }) {
   const [submitted, setSubmitted] = useState(false);
@@ -89,9 +131,7 @@ export default function HomePage() {
             We find where your operations lose time, automate the repetitive parts, and hand back
             the hours, margin and certainty that used to depend on you.
           </p>
-          <p className="terminal-line">
-            {"> What happens to your team if orders doubled next month?"}
-          </p>
+          <HeroQuestion />
           <LeadForm />
           <p className="form-note">
             Work email only. We look at public information about your company and send back where AI
