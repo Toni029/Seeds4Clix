@@ -123,6 +123,7 @@ export function ChaosOrderField({ targetRef }: { targetRef: RefObject<HTMLElemen
 
       const from = points[active];
       const to = points[Math.min(active + 1, points.length - 1)];
+      if (!from || !to) return;
       const signalX = from.x + (to.x - from.x) * signalMix;
       const signalY = from.y + (to.y - from.y) * signalMix;
       const signalColor = active < 20 ? colors[0] : active < 40 ? colors[1] : colors[2];
