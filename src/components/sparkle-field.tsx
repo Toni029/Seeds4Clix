@@ -91,6 +91,7 @@ export function SparkleField() {
 
       for (let i = sparkles.length - 1; i >= 0; i -= 1) {
         const sparkle = sparkles[i];
+        if (!sparkle) continue;
         sparkle.life -= elapsed;
         if (sparkle.life <= 0) {
           sparkles.splice(i, 1);
@@ -102,8 +103,7 @@ export function SparkleField() {
 
         const lifeRatio = sparkle.life / sparkle.maxLife;
         const fade = Math.sin(lifeRatio * Math.PI);
-        const color =
-          sparkle.hue === "primary" ? "oklch(0.82 0.18 170" : "oklch(0.78 0.16 255";
+        const color = sparkle.hue === "primary" ? "oklch(0.82 0.18 170" : "oklch(0.78 0.16 255";
 
         context.save();
         context.globalAlpha = Math.max(0, fade) * 0.85;
@@ -134,7 +134,12 @@ export function SparkleField() {
       const interactive = target?.closest(INTERACTIVE_SELECTOR);
       if (!interactive) return;
       const rect = interactive.getBoundingClientRect();
-      spawn(rect.left + rect.width / 2, rect.top + rect.height / 2, 10, Math.max(rect.width, rect.height) / 2.2);
+      spawn(
+        rect.left + rect.width / 2,
+        rect.top + rect.height / 2,
+        10,
+        Math.max(rect.width, rect.height) / 2.2,
+      );
     };
 
     const onVisibilityChange = () => {

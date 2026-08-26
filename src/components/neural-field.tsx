@@ -89,7 +89,10 @@ export function NeuralField() {
         const breathing = Math.sin(seconds * 0.35 + node.phase) * 4;
         const x = node.x * width + Math.cos(node.phase) * breathing;
         const scrollOffset = (scrollPosition * 0.18) % (height + 180);
-        const y = ((node.y * height + Math.sin(node.phase) * breathing - scrollOffset + height + 180) % (height + 180)) - 90;
+        const y =
+          ((node.y * height + Math.sin(node.phase) * breathing - scrollOffset + height + 180) %
+            (height + 180)) -
+          90;
         return { x, y, node };
       });
 

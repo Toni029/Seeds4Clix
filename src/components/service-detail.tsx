@@ -21,7 +21,7 @@ export function ServiceDetail({ eyebrow, title, intro, examples, steps, cta }: P
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">{intro}</p>
           <Link
             href="/ai-development"
-           
+
             className="mt-10 inline-flex rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground cta-glow"
           >
             {cta}
@@ -65,7 +65,7 @@ export function ServiceDetail({ eyebrow, title, intro, examples, steps, cta }: P
           </p>
           <Link
             href="/ai-development"
-           
+
             className="mt-10 inline-flex rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground cta-glow"
           >
             Start the conversation

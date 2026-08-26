@@ -52,7 +52,6 @@ export function SiteHeader() {
               key={item.to}
               href={item.to}
               className="nav-link transition-colors duration-300 hover:text-primary"
-             
             >
               {item.label}
             </Link>
@@ -64,7 +63,7 @@ export function SiteHeader() {
           </span>
           <Link
             href="/ai-development"
-           
+
             className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground cta-glow"
           >
             I want to automate my company
