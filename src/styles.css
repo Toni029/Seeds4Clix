@@ -735,8 +735,9 @@ input:focus {
   [data-reveal],
   [data-reveal].is-visible,
   .text-gradient-headline,
-  .marquee-track {
-    animation: none !important;
+  .marquee-track,
+  .path-step::before {
+  animation: none !important;
     opacity: 1 !important;
   }
 }
@@ -978,6 +979,24 @@ input:focus {
     box-shadow 0.4s ease;
   animation: path-card-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+.path-step::before {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: color-mix(in oklab, var(--primary) 82%, transparent);
+  filter: drop-shadow(0 0 0 color-mix(in oklab, var(--primary) 0%, transparent));
+  animation: triangle-pulse 3.8s ease-in-out infinite;
+}
+.path-step:nth-of-type(2)::before {
+  animation-delay: 0.45s;
+}
+.path-step:nth-of-type(3)::before {
+  animation-delay: 0.9s;
+}
 .path-step:nth-of-type(2) {
   animation-delay: 0.16s;
 }
@@ -1000,7 +1019,6 @@ input:focus {
   font-weight: 800;
   line-height: 1;
   text-align: left;
-  animation: path-node 3s ease-in-out infinite;
 }
 .path-step-kicker,
 .path-step-state {
@@ -1028,13 +1046,17 @@ input:focus {
     transform: translateY(0);
   }
 }
-@keyframes path-node {
+@keyframes triangle-pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 28%, transparent);
+    opacity: 0.5;
+    transform: translateY(0) scale(0.9);
+    filter: drop-shadow(0 0 0 color-mix(in oklab, var(--primary) 0%, transparent));
   }
   50% {
-    box-shadow: 0 0 0 8px color-mix(in oklab, var(--primary) 0%, transparent);
+    opacity: 1;
+    transform: translateY(-2px) scale(1.08);
+    filter: drop-shadow(0 0 12px color-mix(in oklab, var(--primary) 55%, transparent));
   }
 }
 .path-grid li > span {
