@@ -8,132 +8,121 @@ export function ChaosOrderField({ targetRef }: { targetRef: RefObject<HTMLElemen
   useEffect(() => {
     const canvas = canvasRef.current;
     const section = targetRef.current;
-    const context = canvas?.getContext("2d");
-    if (!canvas || !section || !context) return;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !section || !ctx) return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let width = 1;
     let height = 1;
     let frame = 0;
     let progress = 0;
-    let visible = true;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const colors: [string, string, string] = ["#ff9b58", "#9ddd68", "#61b9ff"];
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
       const rect = section.getBoundingClientRect();
       width = Math.max(1, rect.width);
-      height = Math.max(1, rect.height);
-      canvas.width = Math.round(width * dpr);
-      canvas.height = Math.round(height * dpr);
-      canvas.style.width = `${width}px`;
+      height = Math.min(390, Math.max(250, width * 0.34));
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      canvas.style.width = "100%";
       canvas.style.height = `${height}px`;
-      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     };
 
-    const updateProgress = () => {
+    const update = () => {
       const rect = section.getBoundingClientRect();
-      const viewport = window.innerHeight || 1;
-      progress = Math.max(0, Math.min(1, (viewport * 0.82 - rect.top) / (rect.height * 0.72)));
+      progress = Math.max(
+        0,
+        Math.min(1, (window.innerHeight * 0.8 - rect.top) / (rect.height * 0.64)),
+      );
     };
 
     const draw = (time: number) => {
-      if (!visible) return;
-      const t = time * 0.001;
-      const eased = progress * progress * (3 - 2 * progress);
-      context.clearRect(0, 0, width, height);
+      const t = time / 1000;
+      const ease = progress * progress * (3 - 2 * progress);
+      const padX = Math.min(44, width * 0.08);
+      const graphTop = Math.max(34, height * 0.13);
+      const graphBottom = Math.min(height * 0.68, height - 92);
+      const graphWidth = width - padX * 2;
+      const baseline = graphBottom - (graphBottom - graphTop) * 0.18;
+      ctx.clearRect(0, 0, width, height);
 
-      const left = width * 0.08;
-      const right = width * 0.92;
-      const top = height * 0.16;
-      const bottom = height * 0.72;
-      const step = (right - left) / 24;
-      const points = Array.from({ length: 25 }, (_, index) => {
-        const x = left + index * step;
-        const chaos =
-          Math.sin(index * 3.7) * 0.18 + Math.cos(index * 1.9) * 0.11 + (index % 3) * 0.05;
-        const order = 0.78 - index * 0.022 + Math.sin(index * 0.7) * 0.025;
-        const yRatio = chaos * (1 - eased) + order * eased;
-        return { x, y: top + yRatio * (bottom - top) };
-      });
-
-      context.strokeStyle = "oklch(0.32 0.03 250 / 0.55)";
-      context.lineWidth = 1;
-      for (let row = 0; row < 4; row += 1) {
-        const y = top + row * ((bottom - top) / 3);
-        context.beginPath();
-        context.moveTo(left, y);
-        context.lineTo(right, y);
-        context.stroke();
+      ctx.strokeStyle = "rgba(135, 160, 180, .16)";
+      ctx.lineWidth = 1;
+      for (let i = 0; i < 5; i += 1) {
+        const y = graphTop + (graphBottom - graphTop) * (i / 4);
+        ctx.beginPath();
+        ctx.moveTo(padX, y);
+        ctx.lineTo(width - padX, y);
+        ctx.stroke();
+      }
+      for (let i = 0; i < 9; i += 1) {
+        const x = padX + graphWidth * (i / 8);
+        ctx.beginPath();
+        ctx.moveTo(x, graphTop);
+        ctx.lineTo(x, graphBottom);
+        ctx.stroke();
       }
 
-      context.beginPath();
-      points.forEach((point, index) => {
-        if (index === 0) context.moveTo(point.x, point.y);
-        else context.lineTo(point.x, point.y);
+      const points = Array.from({ length: 31 }, (_, i) => {
+        const x = padX + graphWidth * (i / 30);
+        const chaos = baseline - Math.sin(i * 2.7) * 28 - Math.cos(i * 1.3) * 18 - (i % 4) * 10;
+        const organized = baseline - (graphBottom - graphTop) * (0.1 + i / 42);
+        return { x, y: chaos * (1 - ease) + organized * ease };
       });
-      context.lineWidth = 2.5;
-      const gradient = context.createLinearGradient(left, 0, right, 0);
-      gradient.addColorStop(0, "oklch(0.68 0.18 52)");
-      gradient.addColorStop(0.48, "oklch(0.72 0.17 145)");
-      gradient.addColorStop(1, "oklch(0.74 0.16 215)");
-      context.strokeStyle = gradient;
-      context.shadowBlur = 12;
-      context.shadowColor = "oklch(0.72 0.16 180 / 0.35)";
-      context.stroke();
-      context.shadowBlur = 0;
 
-      const activeIndex = reducedMotion.matches ? 24 : Math.floor((t * 8) % 25);
-      points.forEach((point, index) => {
-        const active = index === activeIndex;
-        context.beginPath();
-        context.fillStyle =
-          index < 8
-            ? "oklch(0.68 0.18 52)"
-            : index < 16
-              ? "oklch(0.72 0.17 145)"
-              : "oklch(0.74 0.16 215)";
-        context.globalAlpha = active ? 1 : 0.72;
-        context.arc(point.x, point.y, active ? 4.5 : 2.5, 0, Math.PI * 2);
-        context.fill();
-        if (active) {
-          context.beginPath();
-          context.strokeStyle = context.fillStyle;
-          context.globalAlpha = 0.35;
-          context.arc(point.x, point.y, 12 + Math.sin(t * 4) * 3, 0, Math.PI * 2);
-          context.stroke();
+      ctx.beginPath();
+      points.forEach((point, i) =>
+        i ? ctx.lineTo(point.x, point.y) : ctx.moveTo(point.x, point.y),
+      );
+      const gradient = ctx.createLinearGradient(padX, 0, width - padX, 0);
+      gradient.addColorStop(0, colors[0]);
+      gradient.addColorStop(0.46, colors[1]);
+      gradient.addColorStop(1, colors[2]);
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = 3;
+      ctx.shadowBlur = 16;
+      ctx.shadowColor = "rgba(100, 210, 160, .35)";
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      const active = reduce.matches ? 29 : Math.floor((t * 12) % 30);
+      points.forEach((point, i) => {
+        ctx.beginPath();
+        ctx.fillStyle = i < 10 ? colors[0] : i < 20 ? colors[1] : colors[2];
+        ctx.globalAlpha = i === active ? 1 : 0.8;
+        ctx.arc(point.x, point.y, i === active ? 5 : 3, 0, Math.PI * 2);
+        ctx.fill();
+        if (i === active) {
+          ctx.beginPath();
+          ctx.globalAlpha = 0.35;
+          ctx.strokeStyle = ctx.fillStyle;
+          ctx.arc(point.x, point.y, 14 + Math.sin(t * 5) * 3, 0, Math.PI * 2);
+          ctx.stroke();
         }
       });
-
-      context.globalAlpha = 1;
-      context.font = "600 10px ui-monospace, SFMono-Regular, Menlo, monospace";
-      context.letterSpacing = "1px";
-      context.fillStyle = "oklch(0.68 0.18 52)";
-      context.fillText("ANARCHY", left, bottom + 28);
-      context.fillStyle = "oklch(0.72 0.17 145)";
-      context.fillText("PROCESSES", width * 0.43, bottom + 28);
-      context.fillStyle = "oklch(0.74 0.16 215)";
-      context.fillText("AI / SCALE", width * 0.78, bottom + 28);
-
+      ctx.globalAlpha = 1;
+      ctx.font = "600 10px ui-monospace, SFMono-Regular, Menlo, monospace";
+      ["ANARCHY", "PROCESSES", "AI / SCALE"].forEach((label, i) => {
+        ctx.fillStyle = colors[Math.min(i, colors.length - 1)] ?? colors[2];
+        ctx.fillText(label, padX + graphWidth * (i / 3) + (i ? 10 : 0), graphBottom + 28);
+      });
+      ctx.fillStyle = "rgba(170, 190, 205, .55)";
+      ctx.font = "11px ui-monospace, SFMono-Regular, Menlo, monospace";
+      ctx.fillText("operational clarity", padX, graphTop - 14);
       frame = requestAnimationFrame(draw);
     };
 
-    const onVisibility = () => {
-      visible = document.visibilityState === "visible";
-      if (visible) frame = requestAnimationFrame(draw);
-      else cancelAnimationFrame(frame);
-    };
-
     resize();
-    updateProgress();
+    update();
     frame = requestAnimationFrame(draw);
-    window.addEventListener("scroll", updateProgress, { passive: true });
     window.addEventListener("resize", resize);
-    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("scroll", update, { passive: true });
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", updateProgress);
       window.removeEventListener("resize", resize);
-      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("scroll", update);
     };
   }, [targetRef]);
 
