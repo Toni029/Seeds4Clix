@@ -5,14 +5,15 @@
 7:"$Sreact.suspense"
 b:I[93330,["/_next/static/chunks/3rznp48lt89ye.js","/_next/static/chunks/2fiqh326__s_-.js"],"ViewportBoundary"]
 c:I[93330,["/_next/static/chunks/3rznp48lt89ye.js","/_next/static/chunks/2fiqh326__s_-.js"],"MetadataBoundary"]
+d:I[53740,["/_next/static/chunks/3rznp48lt89ye.js","/_next/static/chunks/2fiqh326__s_-.js"],"IconMark"]
 a:X
-0:{"buildId":"qayYQw3WlhLDvAWcbjfiA","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/_next/static/chunks/246-2blo93mso.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":"$@9","staleTime":"$a","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$Lb",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$Lc",null,{"children":["$","$7",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Seeds4Clix"}],["$","meta","1",{"name":"description","content":"Structure, automate and scale your company with practical AI."}]]}]}]}],null]}],"isPartial":"$@d","staleTime":"$a","varyParams":null}],"isUpgradeableISRFallback":false,"a":"$@e","rootVaryParams":null,"needsRuntimeRequest":"$@f"}
+0:{"buildId":"mzQVZFT0YlCj9J1mWchzs","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/_next/static/chunks/246-2blo93mso.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":"$@9","staleTime":"$a","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$Lb",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$Lc",null,{"children":["$","$7",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Seeds4Clix"}],["$","meta","1",{"name":"description","content":"Structure, automate and scale your company with practical AI."}],["$","link","2",{"rel":"icon","href":"/icon.png?icon.3iemeu68o39cs.png","sizes":"1263x1246","type":"image/png"}],["$","$Ld","3",{}]]}]}]}],null]}],"isPartial":"$@e","staleTime":"$a","varyParams":null}],"isUpgradeableISRFallback":false,"a":"$@f","rootVaryParams":null,"needsRuntimeRequest":"$@10"}
 4:{}
 5:"$0:data:0:rsc:props:children:0:props:serverProvidedParams:params"
 8:null
-f:true
+10:true
 a:300
 a:C
-e:0
-d:"$undefined"
+f:0
+e:"$undefined"
 9:"$undefined"
