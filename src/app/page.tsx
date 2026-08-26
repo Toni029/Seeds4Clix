@@ -29,11 +29,7 @@ const paths = [
   },
 ];
 
-const heroQuestions = [
-  "If you stepped away for 90 days, would the business grow without you?",
-  "Which decisions do you repeat every week without trusted data?",
-  "What would your team stop doing if the busywork disappeared?",
-];
+const heroQuestions = ["If your demand doubled tomorrow, what would break first?"];
 
 const offers = [
   {
@@ -123,13 +119,13 @@ export default function HomePage() {
       <section className="home-hero">
         <div className="home-hero-content">
           <h1>
-            <span>Put Artificial Intelligence</span>
+            <span>Scale your company</span>
             <br />
-            to work in your business.
+            with Artificial Intelligence.
           </h1>
           <p className="hero-copy">
-            We find where your operations lose time, automate the repetitive parts, and hand back
-            the hours, margin and certainty that used to depend on you.
+            We find where your business stalls, automate the repetitive work, and give you back
+            time, margin and decisions that stop depending on you.
           </p>
           <HeroQuestion />
           <LeadForm />
