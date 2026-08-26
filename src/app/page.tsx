@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import { ChaosOrderField } from "@/components/chaos-order-field";
 
 const sectors = [
   "E-commerce & Retail",
@@ -114,6 +115,8 @@ function LeadForm({ compact = false }: { compact?: boolean }) {
 }
 
 export default function HomePage() {
+  const pathSectionRef = useRef<HTMLElement>(null);
+
   return (
     <div>
       <section className="home-hero">
@@ -198,19 +201,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="content-section">
+      <section className="content-section path-section" ref={pathSectionRef}>
         <p className="eyebrow">The path</p>
         <h2>From anarchy to scale</h2>
         <p className="section-intro">
           AI only pays off once the first two stages are in place. Skip a step and you just scale
           the chaos faster.
         </p>
-        <ol className="path-grid moving-path">
+        <ChaosOrderField targetRef={pathSectionRef} />
+        <ol className="path-grid">
           {paths.map((path, index) => (
             <li className="surface-card path-step flex flex-col p-8" key={path.title}>
-              <span className="path-step-number">{index + 1}</span>
+              <span className="path-step-number" aria-hidden="true">
+                {index + 1}
+              </span>
+              <span className="path-step-kicker">Stage {index + 1}</span>
               <h3>{path.title}</h3>
               <p>{path.body}</p>
+              <span className="path-step-state">
+                {index === 0 ? "Observe" : index === 1 ? "Automate" : "Compound"}
+              </span>
             </li>
           ))}
         </ol>
