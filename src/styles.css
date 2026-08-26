@@ -982,17 +982,19 @@ input:focus {
 .path-step::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -3px;
+  border: 1px solid color-mix(in oklab, var(--primary) 65%, transparent);
   border-radius: inherit;
   pointer-events: none;
+  opacity: 0;
   box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 0%, transparent);
-  animation: card-edge-pulse 7.2s ease-in-out infinite;
+  animation: card-edge-pulse 9s linear infinite;
 }
 .path-step:nth-of-type(2)::before {
-  animation-delay: 2.4s;
+  animation-delay: 3s;
 }
 .path-step:nth-of-type(3)::before {
-  animation-delay: 4.8s;
+  animation-delay: 6s;
 }
 .path-step:nth-of-type(2) {
   animation-delay: 0.16s;
@@ -1045,12 +1047,20 @@ input:focus {
 }
 @keyframes card-edge-pulse {
   0%,
-  100% {
+  8% {
+    opacity: 0;
     box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 0%, transparent);
   }
-  50% {
-    box-shadow: 0 0 0 5px color-mix(in oklab, var(--primary) 18%, transparent),
-      0 0 24px color-mix(in oklab, var(--primary) 22%, transparent);
+  16%,
+  28% {
+    opacity: 1;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary) 16%, transparent),
+      0 0 28px color-mix(in oklab, var(--primary) 32%, transparent);
+  }
+  36%,
+  100% {
+    opacity: 0;
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 0%, transparent);
   }
 }
 .path-grid li > span {
