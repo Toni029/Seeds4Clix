@@ -205,10 +205,10 @@ export default function HomePage() {
           AI only pays off once the first two stages are in place. Skip a step and you just scale
           the chaos faster.
         </p>
-        <ol className="path-grid">
+        <ol className="path-grid moving-path">
           {paths.map((path, index) => (
-            <li className="surface-card flex flex-col p-8" key={path.title}>
-              <span>{index + 1}</span>
+            <li className="surface-card path-step flex flex-col p-8" key={path.title}>
+              <span className="path-step-number">{index + 1}</span>
               <h3>{path.title}</h3>
               <p>{path.body}</p>
             </li>
