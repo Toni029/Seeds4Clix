@@ -852,8 +852,7 @@ input:focus {
   color: var(--foreground);
   outline: none;
 }
-.lead-form button,
-.primary-link {
+.lead-form button {
   border: 0;
   border-radius: 999px;
   background: var(--primary);
@@ -861,7 +860,17 @@ input:focus {
   padding: 1rem 1.5rem;
   font-weight: 700;
   white-space: nowrap;
-}
+  }
+  .primary-link {
+  border: 0;
+  border-radius: 999px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.7rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+  }
 .form-note {
   max-width: 620px;
   margin-top: 1rem;
