@@ -131,22 +131,44 @@ export default function HomePage() {
     <div>
       <section className="home-hero">
         <div className="home-hero-content">
+          <div className="hero-badge hero-rise" style={{ "--rise-d": "0s" } as React.CSSProperties}>
+            <span className="hero-badge-dot" aria-hidden="true" />
+            From diagnostic to automation in weeks
+          </div>
           <h1 className="hero-title">
-            <span className="hero-title-lead scale-title-gradient">Scale your company</span>
+            <span
+              className="hero-title-lead scale-title-gradient hero-rise"
+              style={{ "--rise-d": "0.08s" } as React.CSSProperties}
+            >
+              Scale your company
+            </span>
             <br />
-            <span className="hero-title-subtitle">with Artificial Intelligence.</span>
+            <span
+              className="hero-title-subtitle hero-rise"
+              style={{ "--rise-d": "0.18s" } as React.CSSProperties}
+            >
+              with Artificial Intelligence.
+            </span>
           </h1>
-          <p className="hero-copy">
+          <p className="hero-copy hero-rise" style={{ "--rise-d": "0.28s" } as React.CSSProperties}>
             We find where your business stalls, automate the repetitive work, and give you back
             time, margin and decisions that stop depending on you.
           </p>
-          <HeroQuestion />
-          <LeadForm />
-          <p className="form-note">
+          <div className="hero-rise" style={{ "--rise-d": "0.36s" } as React.CSSProperties}>
+            <HeroQuestion />
+          </div>
+          <div className="hero-rise" style={{ "--rise-d": "0.44s" } as React.CSSProperties}>
+            <LeadForm />
+          </div>
+          <p className="form-note hero-rise" style={{ "--rise-d": "0.5s" } as React.CSSProperties}>
             Work email only. We look at public information about your company and send back where AI
             is likely to help. No commitment.
           </p>
-          <a className="text-link" href="#work">
+          <a
+            className="text-link hero-rise"
+            style={{ "--rise-d": "0.56s" } as React.CSSProperties}
+            href="#work"
+          >
             Or see how we work
           </a>
         </div>
