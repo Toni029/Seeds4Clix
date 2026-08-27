@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,6 +35,8 @@ const SERVICES_MENU = [
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -42,6 +44,25 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    };
+  }, []);
+
+  const openServices = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setServicesOpen(true);
+  };
+
+  const scheduleCloseServices = () => {
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    closeTimeoutRef.current = setTimeout(() => setServicesOpen(false), 150);
+  };
 
   return (
     <header
@@ -72,12 +93,21 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-foreground/80 min-[560px]:flex lg:gap-8">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="nav-link inline-flex items-center gap-1 transition-colors duration-300 outline-none hover:text-primary">
+          <DropdownMenu open={servicesOpen} onOpenChange={setServicesOpen}>
+            <DropdownMenuTrigger
+              className="nav-link inline-flex items-center gap-1 transition-colors duration-300 outline-none hover:text-primary"
+              onMouseEnter={openServices}
+              onMouseLeave={scheduleCloseServices}
+            >
               Services
               <ChevronDown size={14} aria-hidden="true" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-72">
+            <DropdownMenuContent
+              align="start"
+              className="w-72"
+              onMouseEnter={openServices}
+              onMouseLeave={scheduleCloseServices}
+            >
               {SERVICES_MENU.map((item) => (
                 <DropdownMenuItem key={item.href} asChild>
                   <Link href={item.href} className="flex flex-col items-start gap-0.5 py-2">
