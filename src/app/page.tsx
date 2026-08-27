@@ -5,19 +5,19 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import { ChaosOrderField } from "@/components/chaos-order-field";
 
 const companies = [
-  "149Photos",
-  "Algar",
-  "Continental",
-  "HGreg",
-  "HoneyBook",
-  "IMP Diagnostics",
-  "Matador",
-  "Metro do Porto",
-  "MobileODT",
-  "P2Sample",
-  "Pentadata",
-  "PicUP",
-  "Vonovia",
+  { name: "149Photos", logo: "/logos/149photos.png" },
+  { name: "Algar", logo: "/logos/algar.png" },
+  { name: "Continental", logo: "/logos/continental.svg" },
+  { name: "HGreg", logo: "/logos/hgreg.png" },
+  { name: "HoneyBook", logo: "/logos/honeybook.png" },
+  { name: "IMP Diagnostics", logo: "/logos/imp.webp" },
+  { name: "Matador", logo: "/logos/matador.svg" },
+  { name: "Metro do Porto", logo: "/logos/metro-do-porto.png" },
+  { name: "MobileODT", logo: "/logos/mobileodt.png" },
+  { name: "P2Sample", logo: "/logos/p2sample.png" },
+  { name: "Pentadata", logo: "/logos/pentadata.png" },
+  { name: "PicUP", logo: "/logos/picup.svg" },
+  { name: "Vonovia", logo: "/logos/vonovia.png" },
 ];
 
 const paths = [
@@ -151,8 +151,8 @@ export default function HomePage() {
         <p className="eyebrow">Companies already deciding with AI alongside us</p>
         <div className="sector-strip logo-track">
           {[...companies, ...companies].map((company, index) => (
-            <span key={`${company}-${index}`} className="sector-chip">
-              {company}
+            <span key={`${company.name}-${index}`} className="sector-chip">
+              <img src={company.logo || "/placeholder.svg"} alt={company.name} loading="lazy" />
             </span>
           ))}
         </div>

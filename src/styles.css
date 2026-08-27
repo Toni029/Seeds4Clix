@@ -902,19 +902,23 @@ input:focus {
   animation: marquee 38s linear infinite;
 }
 .logo-track .sector-chip {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: -0.02em;
-  color: var(--muted-foreground);
-  filter: grayscale(1);
-  opacity: 0.55;
+  display: flex;
+  align-items: center;
+  height: 2.25rem;
   white-space: nowrap;
+  }
+  .logo-track .sector-chip img {
+  height: 100%;
+  width: auto;
+  max-width: 7.5rem;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: 0.45;
   transition: opacity 0.2s ease;
-}
-.logo-track .sector-chip:hover {
+  }
+  .logo-track .sector-chip:hover img {
   opacity: 0.85;
-}
+  }
 .content-section,
 .split-section {
   max-width: 1200px;
