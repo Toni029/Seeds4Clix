@@ -4,15 +4,20 @@ import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { ChaosOrderField } from "@/components/chaos-order-field";
 
-const sectors = [
-  "E-commerce & Retail",
-  "Logistics & Field Ops",
-  "Professional Services",
-  "Manufacturing",
-  "Healthcare Operations",
-  "Financial Services",
-  "Hospitality",
-  "Real Estate",
+const companies = [
+  { name: "149Photos", logo: "/logos/149photos.png" },
+  { name: "Algar", logo: "/logos/algar.png" },
+  { name: "Continental", logo: "/logos/continental.svg" },
+  { name: "HGreg", logo: "/logos/hgreg.png" },
+  { name: "HoneyBook", logo: "/logos/honeybook.png" },
+  { name: "IMP Diagnostics", logo: "/logos/imp.webp" },
+  { name: "Matador", logo: "/logos/matador.svg" },
+  { name: "Metro do Porto", logo: "/logos/metro-do-porto.png" },
+  { name: "MobileODT", logo: "/logos/mobileodt.png" },
+  { name: "P2Sample", logo: "/logos/p2sample.png" },
+  { name: "Pentadata", logo: "/logos/pentadata.png" },
+  { name: "PicUP", logo: "/logos/picup.svg" },
+  { name: "Vonovia", logo: "/logos/vonovia.png" },
 ];
 
 const paths = [
@@ -30,7 +35,12 @@ const paths = [
   },
 ];
 
-const heroQuestions = ["If your demand doubled tomorrow, what would break first?"];
+const heroQuestions = [
+  "If your demand doubled tomorrow, what would break first?",
+  "How much of your day is work that should already be delegated?",
+  "Which decisions do you repeat every week without changing?",
+  "If you stepped away for 90 days, would the business grow or shrink?",
+];
 
 const offers = [
   {
@@ -142,12 +152,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="logo-strip" aria-label="Sectors we work with">
-        <p className="eyebrow">Industries running on AI alongside us</p>
+      <section className="logo-strip" aria-label="Companies deciding with AI alongside us">
+        <p className="eyebrow">Companies already deciding with AI alongside us</p>
         <div className="sector-strip logo-track">
-          {[...sectors, ...sectors].map((sector, index) => (
-            <span key={`${sector}-${index}`} className="sector-chip">
-              {sector}
+          {[...companies, ...companies].map((company, index) => (
+            <span key={`${company.name}-${index}`} className="sector-chip">
+              <img src={company.logo || "/placeholder.svg"} alt={company.name} loading="lazy" />
             </span>
           ))}
         </div>
