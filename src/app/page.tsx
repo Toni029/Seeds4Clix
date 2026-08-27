@@ -4,15 +4,20 @@ import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { ChaosOrderField } from "@/components/chaos-order-field";
 
-const sectors = [
-  "E-commerce & Retail",
-  "Logistics & Field Ops",
-  "Professional Services",
-  "Manufacturing",
-  "Healthcare Operations",
-  "Financial Services",
-  "Hospitality",
-  "Real Estate",
+const companies = [
+  "149Photos",
+  "Algar",
+  "Continental",
+  "HGreg",
+  "HoneyBook",
+  "IMP Diagnostics",
+  "Matador",
+  "Metro do Porto",
+  "MobileODT",
+  "P2Sample",
+  "Pentadata",
+  "PicUP",
+  "Vonovia",
 ];
 
 const paths = [
@@ -142,12 +147,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="logo-strip" aria-label="Sectors we work with">
-        <p className="eyebrow">Industries running on AI alongside us</p>
+      <section className="logo-strip" aria-label="Companies deciding with AI alongside us">
+        <p className="eyebrow">Companies already deciding with AI alongside us</p>
         <div className="sector-strip logo-track">
-          {[...sectors, ...sectors].map((sector, index) => (
-            <span key={`${sector}-${index}`} className="sector-chip">
-              {sector}
+          {[...companies, ...companies].map((company, index) => (
+            <span key={`${company}-${index}`} className="sector-chip">
+              {company}
             </span>
           ))}
         </div>
