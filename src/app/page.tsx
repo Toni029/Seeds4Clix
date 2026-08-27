@@ -35,7 +35,12 @@ const paths = [
   },
 ];
 
-const heroQuestions = ["If your demand doubled tomorrow, what would break first?"];
+const heroQuestions = [
+  "If your demand doubled tomorrow, what would break first?",
+  "How much of your day is work that should already be delegated?",
+  "Which decisions do you repeat every week without changing?",
+  "If you stepped away for 90 days, would the business grow or shrink?",
+];
 
 const offers = [
   {
