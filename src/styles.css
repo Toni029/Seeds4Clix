@@ -828,18 +828,19 @@ input:focus {
 }
 .home-hero h1 {
   margin: 0;
-  max-width: 760px;
-  font-size: clamp(2.5rem, 6vw, 5.2rem);
-  line-height: 0.98;
-  letter-spacing: -0.06em;
+  max-width: 940px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(3.4rem, 7.2vw, 6.4rem);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.075em;
 }
-.hero-title-lead {
-  display: inline-block;
-  font-size: 1.28em;
-}
+.hero-title-lead,
 .hero-title-subtitle {
   display: inline-block;
-  font-size: 0.82em;
+  font-size: 1em;
+}
+.hero-title-subtitle {
   color: var(--foreground);
 }
 .scale-title-gradient {
@@ -849,6 +850,12 @@ input:focus {
   color: transparent;
   -webkit-text-fill-color: transparent;
   animation: scale-title-shift 6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+.hero-rise.scale-title-gradient {
+  animation:
+    hero-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards,
+    scale-title-shift 6s cubic-bezier(0.45, 0, 0.55, 1) 0.7s infinite alternate;
+  animation-delay: var(--rise-d, 0s), 0.7s;
 }
 .hero-copy,
 .section-intro {

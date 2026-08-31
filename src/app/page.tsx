@@ -131,10 +131,6 @@ export default function HomePage() {
     <div>
       <section className="home-hero">
         <div className="home-hero-content">
-          <div className="hero-badge hero-rise" style={{ "--rise-d": "0s" } as React.CSSProperties}>
-            <span className="hero-badge-dot" aria-hidden="true" />
-            From diagnostic to automation in weeks
-          </div>
           <h1 className="hero-title">
             <span
               className="hero-title-lead scale-title-gradient hero-rise"
