@@ -287,15 +287,15 @@ body {
   animation: gradient-pan 7s linear infinite alternate;
 }
 
-/* A continuous, soft green-to-blue blend for the hero title. */
+/* Warm animated gradient inspired by the nilg.ai hero treatment. */
 .scale-title-gradient {
   background-image: linear-gradient(
     105deg,
-    oklch(0.74 0.19 164) 0%,
-    oklch(0.72 0.19 181) 28%,
-    oklch(0.7 0.18 205) 52%,
-    oklch(0.66 0.19 232) 76%,
-    oklch(0.63 0.2 258) 100%
+    oklch(0.72 0.2 48) 0%,
+    oklch(0.7 0.19 25) 28%,
+    oklch(0.7 0.16 4) 52%,
+    oklch(0.69 0.14 332) 76%,
+    oklch(0.68 0.13 300) 100%
   );
   background-size: 240% 100%;
   background-position: 0% 50%;
