@@ -215,24 +215,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="split-section needle-section">
-        <div>
-          <p className="eyebrow">What we could do together</p>
-          <h2>See where AI moves the needle in your business</h2>
-          <p className="section-intro">
-            Leave your contact and we&apos;ll show you, on your own case, where AI creates value.
-            While we do it, this page becomes yours.
-          </p>
-        </div>
-        <div>
-          <LeadForm compact />
-          <p className="form-note">
-            Work email only. We analyze the domain behind your email using public information. By
-            continuing, you agree that we may contact you about this analysis.
-          </p>
-        </div>
-      </section>
-
       <section className="content-section path-section" ref={pathSectionRef}>
         <p className="eyebrow">The path</p>
         <h2>From anarchy to scale</h2>
@@ -259,6 +241,24 @@ export default function HomePage() {
         <Link className="outline-link" href="/ai-development">
           Find out where you stand in 2 minutes
         </Link>
+      </section>
+
+      <section className="split-section needle-section">
+        <div>
+          <p className="eyebrow">What we could do together</p>
+          <h2>See where AI moves the needle in your business</h2>
+          <p className="section-intro">
+            Leave your contact and we&apos;ll show you, on your own case, where AI creates value.
+            While we do it, this page becomes yours.
+          </p>
+        </div>
+        <div>
+          <LeadForm compact />
+          <p className="form-note">
+            Work email only. We analyze the domain behind your email using public information. By
+            continuing, you agree that we may contact you about this analysis.
+          </p>
+        </div>
       </section>
 
       <section className="content-section offers-section">
