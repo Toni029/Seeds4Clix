@@ -70,7 +70,11 @@ export function SiteHeader() {
   };
 
   const handleServicesOpenChange = (open: boolean) => {
-    if (open || !servicesHoveredRef.current) setServicesOpen(open);
+    if (open) {
+      openServices();
+    } else {
+      scheduleCloseServices();
+    }
   };
 
   return (
@@ -113,6 +117,7 @@ export function SiteHeader() {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="start"
+              sideOffset={0}
               className="w-72"
               onPointerEnter={openServices}
               onPointerLeave={scheduleCloseServices}
