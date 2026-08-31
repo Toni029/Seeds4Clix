@@ -36,6 +36,7 @@ const SERVICES_MENU = [
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const servicesHoveredRef = useRef(false);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -52,6 +53,7 @@ export function SiteHeader() {
   }, []);
 
   const openServices = () => {
+    servicesHoveredRef.current = true;
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
@@ -60,8 +62,15 @@ export function SiteHeader() {
   };
 
   const scheduleCloseServices = () => {
+    servicesHoveredRef.current = false;
     if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
-    closeTimeoutRef.current = setTimeout(() => setServicesOpen(false), 150);
+    closeTimeoutRef.current = setTimeout(() => {
+      if (!servicesHoveredRef.current) setServicesOpen(false);
+    }, 300);
+  };
+
+  const handleServicesOpenChange = (open: boolean) => {
+    if (open || !servicesHoveredRef.current) setServicesOpen(open);
   };
 
   return (
@@ -93,11 +102,11 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-foreground/80 min-[560px]:flex lg:gap-8">
-          <DropdownMenu open={servicesOpen} onOpenChange={setServicesOpen}>
+          <DropdownMenu open={servicesOpen} onOpenChange={handleServicesOpenChange}>
             <DropdownMenuTrigger
               className="nav-link inline-flex items-center gap-1 transition-colors duration-300 outline-none hover:text-primary"
-              onMouseEnter={openServices}
-              onMouseLeave={scheduleCloseServices}
+              onPointerEnter={openServices}
+              onPointerLeave={scheduleCloseServices}
             >
               Services
               <ChevronDown size={14} aria-hidden="true" />
@@ -105,8 +114,8 @@ export function SiteHeader() {
             <DropdownMenuContent
               align="start"
               className="w-72"
-              onMouseEnter={openServices}
-              onMouseLeave={scheduleCloseServices}
+              onPointerEnter={openServices}
+              onPointerLeave={scheduleCloseServices}
             >
               {SERVICES_MENU.map((item) => (
                 <DropdownMenuItem key={item.href} asChild>
