@@ -132,21 +132,39 @@ export default function HomePage() {
       <section className="home-hero">
         <div className="home-hero-content">
           <h1 className="hero-title">
-            <span className="hero-title-lead scale-title-gradient">Scale your company</span>
+            <span
+              className="hero-title-lead scale-title-gradient hero-rise"
+              style={{ "--rise-d": "0.08s" } as React.CSSProperties}
+            >
+              Scale your company
+            </span>
             <br />
-            <span className="hero-title-subtitle">with Artificial Intelligence.</span>
+            <span
+              className="hero-title-subtitle hero-rise"
+              style={{ "--rise-d": "0.18s" } as React.CSSProperties}
+            >
+              with Artificial Intelligence.
+            </span>
           </h1>
-          <p className="hero-copy">
+          <p className="hero-copy hero-rise" style={{ "--rise-d": "0.28s" } as React.CSSProperties}>
             We find where your business stalls, automate the repetitive work, and give you back
             time, margin and decisions that stop depending on you.
           </p>
-          <HeroQuestion />
-          <LeadForm />
-          <p className="form-note">
+          <div className="hero-rise" style={{ "--rise-d": "0.36s" } as React.CSSProperties}>
+            <HeroQuestion />
+          </div>
+          <div className="hero-rise" style={{ "--rise-d": "0.44s" } as React.CSSProperties}>
+            <LeadForm />
+          </div>
+          <p className="form-note hero-rise" style={{ "--rise-d": "0.5s" } as React.CSSProperties}>
             Work email only. We look at public information about your company and send back where AI
             is likely to help. No commitment.
           </p>
-          <a className="text-link" href="#work">
+          <a
+            className="text-link hero-rise"
+            style={{ "--rise-d": "0.56s" } as React.CSSProperties}
+            href="#work"
+          >
             Or see how we work
           </a>
         </div>
@@ -193,24 +211,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="split-section needle-section">
-        <div>
-          <p className="eyebrow">What we could do together</p>
-          <h2>See where AI moves the needle in your business</h2>
-          <p className="section-intro">
-            Leave your contact and we&apos;ll show you, on your own case, where AI creates value.
-            While we do it, this page becomes yours.
-          </p>
-        </div>
-        <div>
-          <LeadForm compact />
-          <p className="form-note">
-            Work email only. We analyze the domain behind your email using public information. By
-            continuing, you agree that we may contact you about this analysis.
-          </p>
-        </div>
-      </section>
-
       <section className="content-section path-section" ref={pathSectionRef}>
         <p className="eyebrow">The path</p>
         <h2>From anarchy to scale</h2>
@@ -237,6 +237,24 @@ export default function HomePage() {
         <Link className="outline-link" href="/ai-development">
           Find out where you stand in 2 minutes
         </Link>
+      </section>
+
+      <section className="split-section needle-section">
+        <div>
+          <p className="eyebrow">What we could do together</p>
+          <h2>See where AI moves the needle in your business</h2>
+          <p className="section-intro">
+            Leave your contact and we&apos;ll show you, on your own case, where AI creates value.
+            While we do it, this page becomes yours.
+          </p>
+        </div>
+        <div>
+          <LeadForm compact />
+          <p className="form-note">
+            Work email only. We analyze the domain behind your email using public information. By
+            continuing, you agree that we may contact you about this analysis.
+          </p>
+        </div>
       </section>
 
       <section className="content-section offers-section">
