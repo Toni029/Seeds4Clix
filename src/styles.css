@@ -807,7 +807,6 @@ input:focus {
 }
 .hero-rise {
   opacity: 0;
-  filter: blur(4px);
   transform: translateY(20px);
   animation: hero-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
   animation-delay: var(--rise-d, 0s);
@@ -815,7 +814,6 @@ input:focus {
 @keyframes hero-rise {
   to {
     opacity: 1;
-    filter: none;
     transform: none;
   }
 }
@@ -825,7 +823,6 @@ input:focus {
   .hero-rise {
     animation: none !important;
     opacity: 1 !important;
-    filter: none !important;
     transform: none !important;
   }
 }
